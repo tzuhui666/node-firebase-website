@@ -1,0 +1,275 @@
+/* 基本設定 */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    background-color: #ffffff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scrollbar-width: none;
+    
+}
+/* LOGO & 導覽列 */
+header {
+    position: fixed;
+    display: flex;
+    flex-direction: column; /* 讓 LOGO 和導覽列上下排列 */
+    align-items: center; /* 讓 LOGO 置中 */
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+}
+
+/* LOGO 設定 */
+.logo {
+    height: 30px; /* 可以調整大小 */
+    margin-bottom: 10px; /* 與導覽列的距離 */
+}
+
+/* 導覽列設定 */
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* 讓導覽列選項置中 */
+    gap: 50px; /* 增加選項間距 */
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    display: inline-block;
+}
+
+/* 文字樣式 */
+.nav-menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
+/* 主視覺區塊 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    margin-top: 100px;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+
+/* 標題圖片 */
+.overlay-text {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.overlay-text img {
+    width: 100%;
+    max-width: 500px; /* 限制標題圖片大小 */
+}
+
+/* Read More 按鈕 */
+.scroll-down {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scroll-down img {
+    width: 100%;
+    max-width: 150px;
+}
+
+
+.background-text {
+    text-align: center;
+    margin-top: 100px;
+}
+.background-text img{
+    width: 100%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.redstar {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+.redstar img{
+    width: 100%;
+    max-width: 30px;
+}
+
+
+
+
+
+/* 主容器 */
+.three {
+    display: flex;
+    gap: 60px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 300px;
+}
+
+/* 圓拱框架 */
+.arch {
+    width: 250px;
+    height: 350px;
+    border: 2px solid #D70000;
+    border-top-left-radius: 120px;
+    border-top-right-radius: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+/* 框架內部 */
+.arch-content {
+    text-align: center;
+    line-height: 1.8;
+}
+
+/* 中文標題 */
+.arch-content h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+/* 英文字圖片 */
+.arch-content .text-image_a {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.arch-content .text-image_b {
+    width: 160px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.arch-content .text-image_c {
+    width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* 箭頭 */
+.arch-content img {
+    width: 30px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* 鼠標懸停效果 */
+.arch:hover {
+    background-color: #FDEDEC;
+    transform: translateY(-10px);
+}
+
+.arch:hover img {
+    transform: translateY(5px);
+}
+
+
+
+/* 每個段落區域 */
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+/* 圖片與文字排列 */
+.inside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* 圖片 */
+.inside img {
+    width: 400px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* 文字區域 */
+.text {
+    max-width: 600px;
+    text-align: left;
+}
+
+/* 標題與紅色符號 */
+.star {
+    font-size: 30px;
+    color: #D70000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.redline {
+    display: block;
+    margin: 0 auto; /* 將圖片水平置中 */
+    max-width: 100%;
+    height: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+h3 {
+    font-size: 18px;
+    color: #D70000;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 反轉圖片與文字位置 */
+.reverse .content {
+    flex-direction: row-reverse;
+}
+
+#a,#b,#c {
+    scroll-margin-top: 105px; /* 根據頁面需要調整距離 */
+}
