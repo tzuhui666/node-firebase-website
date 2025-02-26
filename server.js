@@ -35,3 +35,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+db.collection('items').get()
+    .then(snapshot => console.log("Firestore 連接成功"))
+    .catch(err => console.error("Firestore 連接失敗", err));
