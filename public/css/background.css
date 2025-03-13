@@ -318,6 +318,10 @@ p {
     scroll-margin-top: 20px;
 }
 
+#more-info{
+    scroll-margin-top: 200px;
+}
+
 
 
 @media (max-width: 1440px) {
