@@ -8,15 +8,16 @@ body, html {
     display: flex;
     flex-direction: column;
     scrollbar-width: none;
-    
+    scroll-behavior: smooth;
 }
+
 /* LOGO & 導覽列 */
 header {
     position: fixed;
     display: flex;
     flex-direction: column; /* 讓 LOGO 和導覽列上下排列 */
     align-items: center; /* 讓 LOGO 置中 */
-    padding: 10px 0;
+    padding: 30px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -24,12 +25,34 @@ header {
     background: white;
     z-index: 1000;
 }
+.container{
+    background-color: #F3F3F3;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.8s ease-in-out;
+}
+
+body.slide-right {
+    transform: translateX(100%);
+}
+
+#logoBtn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
 
 /* LOGO 設定 */
 .logo {
-    height: 30px; /* 可以調整大小 */
-    margin-bottom: 10px; /* 與導覽列的距離 */
+    height: 46px; /* 可以調整大小 */
+    margin-bottom: 20px; /* 與導覽列的距離 */
+    margin-top: 15px;
 }
+
 
 /* 導覽列設定 */
 .nav-menu ul {
@@ -49,10 +72,9 @@ header {
 .nav-menu a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 }
-
 
 
 /* 主視覺區塊 */
@@ -60,12 +82,23 @@ header {
     position: relative;
     width: 100%;
     height: 100vh;
-    margin-top: 100px;
+    margin-top: 110px;
 }
 
 .hero img {
     width: 100%;
     height: auto;
+}
+
+/* 透明灰色區塊（滾動箭頭會放在這之上） */
+.bottom-gray {
+    width: 100%;
+    height: 140px; /* 調整高度以適應設計 */
+    background-color: rgba(179, 179, 179, 0.3); /* 灰色 + 透明度 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 800; /* 確保它在內容上但在滾動箭頭下 */
 }
 
 
@@ -86,9 +119,10 @@ header {
 /* Read More 按鈕 */
 .scroll-down {
     position: absolute;
-    bottom: 20%;
+    bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 900; 
 }
 
 .scroll-down img {
@@ -96,25 +130,31 @@ header {
     max-width: 150px;
 }
 
+#more-info{
+    scroll-margin-top: 100px;
+}
+
+
 
 .background-text {
     text-align: center;
     margin-top: 100px;
+    margin-bottom: 100px;
 }
 .background-text img{
     width: 100%;
-    max-width: 800px;
-    margin-top: 20px;
+    max-width: 1400px;
+    margin-top: 30px;
 }
 
 .redstar {
     text-align: center;
     margin-top: 100px;
-    margin-bottom: 80px;
+    margin-bottom: 180px;
 }
 .redstar img{
     width: 100%;
-    max-width: 30px;
+    max-width: 50px;
 }
 
 
@@ -132,11 +172,11 @@ header {
 
 /* 圓拱框架 */
 .arch {
-    width: 250px;
-    height: 350px;
+    width: 375px;
+    height: 430px;
     border: 2px solid #D70000;
-    border-top-left-radius: 120px;
-    border-top-right-radius: 120px;
+    border-top-left-radius: 180px;
+    border-top-right-radius: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +193,7 @@ header {
 
 /* 中文標題 */
 .arch-content h2 {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     color: #000;
     margin-bottom: 10px;
@@ -161,26 +201,26 @@ header {
 
 /* 英文字圖片 */
 .arch-content .text-image_a {
-    width: 120px;
+    width: 180px;
     height: auto;
     margin-bottom: 20px;
 }
 
 .arch-content .text-image_b {
-    width: 160px;
+    width: 210px;
     height: auto;
     margin-bottom: 20px;
 }
 
 .arch-content .text-image_c {
-    width: 140px;
+    width: 200px;
     height: auto;
     margin-bottom: 20px;
 }
 
 /* 箭頭 */
 .arch-content img {
-    width: 30px;
+    width: 35px;
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -202,7 +242,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 80px;
 }
 
 /* 圖片與文字排列 */
@@ -210,56 +249,55 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 40px;
+    gap: 150px;
 }
 
 /* 圖片 */
 .inside img {
-    width: 400px;
+    width: 770px;
     height: auto;
-    border-radius: 5px;
 }
 
 /* 文字區域 */
 .text {
-    max-width: 600px;
+    max-width: 1200px;
     text-align: left;
 }
 
 /* 標題與紅色符號 */
 .star {
-    font-size: 30px;
+    font-size: 35px;
     color: #D70000;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 48px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .redline {
     display: block;
     margin: 0 auto; /* 將圖片水平置中 */
-    max-width: 100%;
+    max-width: 40%;
     height: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 h3 {
-    font-size: 18px;
+    font-size: 24px;
     color: #D70000;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
     font-weight: bold;
     text-align: center;
 }
 
 p {
-    font-size: 16px;
+    font-size: 24px;
     color: #333333;
     text-align: center;
     font-weight: bold;
@@ -270,6 +308,287 @@ p {
     flex-direction: row-reverse;
 }
 
-#a,#b,#c {
-    scroll-margin-top: 105px; /* 根據頁面需要調整距離 */
+#a{
+    scroll-margin-top: 20px;
+}
+#c{
+    scroll-margin-top: 30px; /* 根據頁面需要調整距離 */
+}
+#b{
+    scroll-margin-top: 20px;
+}
+
+
+
+@media (max-width: 1440px) {
+    .logo {
+        height: 35px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .nav-menu a {
+        font-size: 18px;
+    }
+
+    .hero img{
+        margin-top: 65px;
+    }
+
+
+    .overlay-text img {
+        max-width: 500px;
+    }
+
+    .scroll-down img {
+        max-width: 130px;
+    }
+
+
+    .background-text img {
+        max-width: 1100px; /* 縮小圖片 */
+    }
+
+    /* 紅色星星 */
+    .redstar img {
+        max-width: 40px;
+    }
+
+    /* 三個拱門區塊 */
+    .three {
+        gap: 50px; 
+        margin-bottom: 250px;
+    }
+
+    .arch {
+        width: 340px;
+        height: 400px;
+    }
+
+    /* 內容框內字體縮小 */
+    .arch-content h2 {
+        font-size: 28px;
+    }
+
+    .arch-content .text-image_a {
+        width: 160px;
+    }
+
+    .arch-content .text-image_b {
+        width: 180px;
+    }
+
+    .arch-content .text-image_c {
+        width: 170px;
+    }
+
+    /* 圖片與文字排列 */
+    .inside {
+        gap: 80px;
+    }
+
+    .inside img {
+        width: 600px; /* 縮小圖片 */
+    }
+
+    .text {
+        max-width: 1000px;
+    }
+
+    .star {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 38px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-bottom: 50px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .redline {
+        max-width: 35%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    /* 滾動區塊 */
+    #a {
+        scroll-margin-top: 55px;
+    }
+    
+    #b {
+        scroll-margin-top: 55px;
+    }
+    
+    #c {
+        scroll-margin-top: 55px;
+    }
+    
+    #more-info{
+        scroll-margin-top: 200px;
+    }
+
+}
+
+@media (max-width: 1280px) {
+    /* 基本設定 */
+    body, html {
+        height: auto; /* 避免 100vh 造成內容超出 */
+    }
+
+    /* LOGO & 導覽列 */
+    header {
+        padding: 15px 0;
+    }
+
+    .logo {
+        height: 25px; /* 縮小 LOGO 大小 */
+        margin-bottom: 10px;
+    }
+
+    .nav-menu ul {
+        gap: 30px;
+    }
+
+    .nav-menu a {
+        font-size: 16px;
+    }
+
+    /* 主視覺區塊 */
+    .hero {
+        margin-top: 55px; /* 調整 margin 避免被 header 壓住 */
+        height: 90vh; /* 縮短視覺區高度 */
+    }
+
+    .hero img{
+        margin-top: 40px;
+        height: 96.5%;
+    }
+
+    /* 透明灰色區塊 */
+    .bottom-gray {
+        height: 100px; /* 減少灰色區塊高度 */
+        bottom: -15px;
+    }
+
+    /* 標題圖片 */
+    .overlay-text {
+        bottom: 40%; /* 調整標題位置 */
+    }
+
+    .overlay-text img {
+        max-width: 400px; /* 縮小標題大小 */
+    }
+
+    /* Read More 按鈕 */
+    .scroll-down {
+        bottom: -2%;
+    }
+
+    .scroll-down img {
+        max-width: 120px; /* 縮小按鈕 */
+    }
+
+    /* 展覽內容 */
+    .background-text {
+        margin-top: 140px;
+        margin-bottom: 80px;
+    }
+
+    .background-text img {
+        max-width: 800px;
+    }
+
+    .redstar img {
+        max-width: 35px;
+    }
+
+    /* 三個拱門區塊 */
+    .three {
+        gap: 40px;
+        margin-bottom: 200px;
+    }
+
+    .arch {
+        width: 300px;
+        height: 370px;
+        margin-top: -100px;
+    }
+
+    .arch-content h2 {
+        font-size: 26px;
+    }
+
+    .arch-content .text-image_a {
+        width: 140px;
+    }
+
+    .arch-content .text-image_b {
+        width: 160px;
+    }
+
+    .arch-content .text-image_c {
+        width: 150px;
+    }
+
+    /* 圖片與文字排列 */
+    .inside {
+        gap: 100px;
+    }
+
+    .inside img {
+        width: 500px;
+    }
+
+    .text {
+        max-width: 900px;
+    }
+
+    .star {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .redline {
+        max-width: 30%;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    
+    /* 滾動區塊 */
+    #a {
+        scroll-margin-top: 10px;
+    }
+    
+    #b {
+        scroll-margin-top: 10px;
+    }
+    
+    #c {
+        scroll-margin-top: 15px;
+    }
+    
+    #more-info{
+        scroll-margin-top: 150px;
+    }
 }

@@ -8,7 +8,7 @@ body, html {
     display: flex;
     flex-direction: column;
     scrollbar-width: none;
-    
+    scroll-behavior: smooth;
 }
 
 /* LOGO & 導覽列 */
@@ -17,7 +17,7 @@ header {
     display: flex;
     flex-direction: column; /* 讓 LOGO 和導覽列上下排列 */
     align-items: center; /* 讓 LOGO 置中 */
-    padding: 10px 0;
+    padding: 30px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -25,11 +25,32 @@ header {
     background: white;
     z-index: 1000;
 }
+.container{
+    background-color: #F3F3F3;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.8s ease-in-out;
+}
+
+body.slide-right {
+    transform: translateX(100%);
+}
+
+#logoBtn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
 
 /* LOGO 設定 */
 .logo {
-    height: 30px; /* 可以調整大小 */
-    margin-bottom: 10px; /* 與導覽列的距離 */
+    height: 46px; /* 可以調整大小 */
+    margin-bottom: 20px; /* 與導覽列的距離 */
+    margin-top: 15px;
 }
 
 /* 導覽列設定 */
@@ -50,68 +71,198 @@ header {
 .nav-menu a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 
-
-.content-all{
-    text-align: center;
-}
-.content-all img{
+/* 搜尋區域樣式 */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 1100px;
-    margin-top: 150px;
-    margin-bottom: 100px;
+    max-width: 1680px;
+    margin: 0 auto;
+    margin-top: 200px;
 }
 
-
-
-/* 搜尋欄樣式 */
+/* 搜尋欄 */
 .search-bar {
     display: flex;
     align-items: center;
-    width: 60%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 1680px;
     background: white;
     border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 120px;
-    margin-left: 22%;
+    margin-bottom: 20px;
 }
 
-/* 搜尋按鈕 (圖片) */
+/* 搜尋按鈕 */
 .search-icon {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    margin-right: 10px;
 }
 
 .search-icon img {
-    width: 24px; /* 調整圖示大小 */
-    height: 24px;
+    width: 55px;
+    height: 55px;
+    opacity: 0.6;
 }
 
-/* 輸入框 */
+/* 搜尋輸入框 */
 .search-bar input {
     flex: 1;
     border: none;
     outline: none;
-    font-size: 16px;
-    padding: 8px 10px;
+    font-size: 24px;
     color: #666;
+    background: transparent;
+    padding: 10px;
 }
 
-.content-all{
-    text-align: center;
+/* 分類表 */
+.category-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 45px;
+    padding: 10px 0;
+    font-size: 32px;
+    font-weight: bold;
+    position: relative;
 }
-.content-all img{
-    width: 100%;
-    max-width: 1100px;
-    margin-top: 30px;
-    margin-bottom: 100px;
+
+/* 分類按鈕 */
+.category {
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease-in-out;
+    position: relative;
+    padding-bottom: 5px; /* 預留底線空間 */
+}
+
+/* 選中分類的樣式 */
+.category.active {
+    font-weight: bold;
+    color: #000;
+    border-bottom: 3px solid black; /* 黑色底線 */
+}
+
+/* ✦ 星星符號 */
+.star {
+    font-size: 28px;
+    margin-left: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+
+
+
+
+
+@media (max-width: 1440px) {
+    .logo {
+        height: 35px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .nav-menu a {
+        font-size: 18px;
+    }
+
+    /* 搜尋區域 */
+    .search-container {
+        margin-top: 150px; /* 減少搜尋區與頂部的距離 */
+        max-width: 1300px; /* 限制搜尋區寬度 */
+        margin-top: 200px;
+    }
+
+    /* 搜尋欄 */
+    .search-bar {
+        max-width: 1300px;
+        padding: 8px 18px;
+    }
+
+    .search-bar input {
+        font-size: 22px;
+    }
+
+    .search-icon img {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* 分類表 */
+    .category-bar {
+        gap: 35px;
+        font-size: 28px;
+    }
+
+    /* 星星符號 */
+    .star {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* 基本設定 */
+    body, html {
+        height: auto; /* 避免 100vh 造成內容超出 */
+    }
+
+    /* LOGO & 導覽列 */
+    header {
+        padding: 15px 0;
+    }
+
+    .logo {
+        height: 25px; /* 縮小 LOGO 大小 */
+        margin-bottom: 10px;
+    }
+
+    .nav-menu ul {
+        gap: 30px;
+    }
+
+    .nav-menu a {
+        font-size: 16px;
+    }
+
+    /* 搜尋區域 */
+    .search-container {
+        margin-top: 130px;
+        max-width: 1100px;
+    }
+
+    /* 搜尋欄 */
+    .search-bar {
+        max-width: 1100px;
+        padding: 6px 16px;
+    }
+
+    .search-bar input {
+        font-size: 20px;
+    }
+
+    .search-icon img {
+        width: 45px;
+        height: 45px;
+    }
+
+    /* 分類表 */
+    .category-bar {
+        gap: 30px;
+        font-size: 24px;
+    }
+
+    /* 星星符號 */
+    .star {
+        font-size: 22px;
+    }
 }

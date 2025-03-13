@@ -1,215 +1,131 @@
-/* 基本設定 */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: "Arial", sans-serif;
-    background-color: #ffffff;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: Arial, sans-serif; }
+
+.container {
+    display: flex;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    scrollbar-width: none;
-    
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.8s ease-in-out;
 }
 
-/* LOGO & 導覽列 */
-header {
-    position: fixed;
-    display: flex;
-    flex-direction: column; /* 讓 LOGO 和導覽列上下排列 */
-    align-items: center; /* 讓 LOGO 置中 */
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: white;
-    z-index: 1000;
+.container.slide-left {
+    transform: translateX(-100%);
 }
 
-/* LOGO 設定 */
-.logo {
-    height: 30px; /* 可以調整大小 */
-    margin-bottom: 10px; /* 與導覽列的距離 */
-}
-
-/* 確保內容不會被 header 擋住 */
-.main-container {
-    margin-top: 80px; /* 預留 LOGO 的高度，避免內容被擋住 */
-}
-
-
-
-/* 左右分區設計（各佔 50%） */
-.main-container {
-    display: flex;
-    width: 100%;
-    height: calc(100vh - 80px); /* 扣掉 LOGO 的高度 */
-}
-
-/* 左側導覽列 */
-.sidebar {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 讓內容上下置中 */
-    align-items: center; /* 文字靠右對齊 */
-    padding-right: 80px; /* 與視覺圖片有間距 */
-}
-
-/* 讓列表不影響對齊 */
-.sidebar ul {
-    list-style: none;
+/* 去除button樣式 */
+button {
+    background: none;
+    border: none;
     padding: 0;
-    margin: 0;
-}
-
-/* 每個導覽連結 */
-.sidebar li {
-    margin: 30px 0; /* 控制間距 */
-}
-
-/* 連結樣式 */
-.sidebar a {
-    text-decoration: none;
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 200px; /* 控制文字與箭頭對齊 */
-}
-
-/* 箭頭圖片樣式 */
-.arrow-icon {
-    width: 32px;
-    height: auto;
-}
-
-/* 右側主視覺 */
-.hero {
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden; /* 防止圖片溢出 */
-}
-
-.hero img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    max-height: 100vh;
-}
-
-
-/* 透明灰色區塊（滾動箭頭會放在這之上） */
-.bottom-gray {
-    width: 100%;
-    height: 140px; /* 調整高度以適應設計 */
-    background-color: rgba(179, 179, 179, 0.5); /* 灰色 + 透明度 */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 800; /* 確保它在內容上但在滾動箭頭下 */
-}
-
-/* 滾動箭頭（確保它在透明灰色區塊之上） */
-.scroll-arrow {
-    position: absolute;
-    bottom: 30px; /* 讓箭頭位於灰色區塊內 */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 900; /* 讓它顯示在最上層 */
-}
-
-.scroll-arrow img {
-    width: 40px;
     cursor: pointer;
 }
 
+.left-section {
+    flex: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+.background-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
 
-
-
-
-/* 展覽資訊 */
-.exhibition-info {
-    padding: 60px 20px;
+.content {
+    position: relative;
     text-align: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.exhibition-info h2 {
-    font-size: 24px;
-    font-weight: bold;
+.top-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-/* 展覽資訊內容 */
-.exhibition-details {
+.logo {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+.date {
+    width: 30%;
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    margin-left: 1.5rem;
+}
+
+.right-section {
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin: auto;
-    gap: 40px;
+    align-items: center;
+    background: white;
 }
 
-/* 文字內容 */
-.exhibition-text {
-    flex: 1;
-    min-width: 300px;
-    text-align: left;
-}
-
-.exhibition-item {
-    margin-bottom: 20px;
-}
-
-.exhibition-item h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
-}
-
-/* 日期圖片樣式 */
-.date-img {
-    width: 200px; /* 可調整大小 */
+.enter-btn {
+    cursor: pointer;
+    transition: transform 0.3s;
+    width: auto;
     height: auto;
-    margin: 5px 0;
+    max-width: 200px;
 }
 
-
-/* 地圖 */
-.exhibition-maps {
-    flex: 1;
-    min-width: 300px;
-}
-iframe {
-    width: 300px;
-    height: 200px;
+.enter-btn:hover {
+    transform: scale(1.1);
 }
 
-/* 底部社群連結 */
-footer {
-    height: 40px;
-    padding: 20px;
-    background-color: #f8f8f8;
-    text-align: center;
+@media (max-width: 1440px) {
+    .logo {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+
+    .date {
+        width: 30%;
+        max-width: 120px;
+        height: auto;
+        margin-bottom: 1.5rem;
+        margin-top: 2.5rem;
+        margin-left: 1.2rem;
+    }
 }
 
-.social-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+@media (max-width: 1280px) {
+    .logo {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+    .date {
+        width: 30%;
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+        margin-left: 1rem;
+    }
+    .enter-btn {
+        cursor: pointer;
+        transition: transform 0.3s;
+        width: auto;
+        height: auto;
+        max-width: 150px;
+    }
 }
-
-
-
-
-
-
-
-
-

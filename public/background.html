@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>背景研究 | Glisper</title>
     <link rel="stylesheet" href="./css/background.css">
+    <script src="./script/background.js"></script>
 </head>
 <body>
     <!-- LOGO + 導覽列 -->
     <header>
-        <a href="index.html"><img src="./images/glisper.png" alt="GLISPER LOGO" class="logo"></a>
+        <button id="logoBtn">
+            <img src="./images/glisper.png" alt="GLISPER LOGO" class="logo">
+        </button>
         <nav class="nav-menu">
             <ul>
                 <li><a href="exhibition.html">展覽資訊</a></li>
@@ -19,7 +22,6 @@
         </nav>
     </header>
     
-
     <!-- 主視覺大圖 -->
     <section class="hero">
         <img src="./images/background.png" alt="背景研究主視覺">
@@ -31,130 +33,134 @@
 
         <!-- Read more -->
         <div class="scroll-down">
-            <img src="./images/read_more.png" alt="Read more">
+            <a href="#more-info"><img src="./images/read_more.png" alt="Read more"></a>
             <!-- <a href="#more-info">
                 
             </a> -->
         </div>
+
+        <!-- 底部灰色區塊（放在滾動箭頭上方） -->
+        <div class="bottom-gray"></div>
     </section>
 
-    
+    <div class="container">
+        
+        <section class="background-content" id="more-info">
+            <!-- 背景文字 -->
+            <div class="background-text">
+                <img src="./images/background_content .png" alt="background 文字">
+            </div>
 
-    <section class="background-content">
-        <!-- 背景文字 -->
-        <div class="background-text">
-            <img src="./images/background_content .png" alt="background 文字">
-        </div>
+            <div class="redstar">
+                <img src="./images/redstar.png" alt="紅色星星">
+            </div>
 
-        <div class="redstar">
-            <img src="./images/redstar.png" alt="紅色星星">
-        </div>
+            <div class="three">
+                <div class="arch">
+                    <div class="arch-content">
+                        <h2>聚光燈效應</h2>
+                        <img src="./images/spotlight_effect.png" alt="Spotlight Effect" class="text-image_a">
+                        <br>
+                        <a href="#a">
+                            <img src="./images/arrow.png" alt="Arrow Down">
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="arch">
+                    <div class="arch-content">
+                        <h2>透明錯覺</h2>
+                        <img src="./images/illusion_of_transparency.png" alt="Illusion of Transparency" class="text-image_b">
+                        <br>
+                        <a href="#b">
+                            <img src="./images/arrow.png" alt="Arrow Down">
+                        </a>
+                    </div>
+                </div>
+        
+                <div class="arch">
+                    <div class="arch-content">
+                        <h2>錯誤認知</h2>
+                        <img src="./images/cognitive_distortion.png" alt="Cognitive Distortion" class="text-image_c">
+                        <br>
+                        <a href="#c">
+                            <img src="./images/arrow.png" alt="Arrow Down">
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <div class="three">
-            <div class="arch">
-                <div class="arch-content">
-                    <h2>聚光燈效應</h2>
-                    <img src="./images/spotlight_effect.png" alt="Spotlight Effect" class="text-image_a">
-                    <br>
-                    <a href="#a">
-                        <img src="./images/arrow.png" alt="Arrow Down">
-                    </a>
+            <div class="section" id="a">
+                <div class="inside">
+                    <img src="./images/spotlight.png" alt="Spotlight Effect">
+                    <div class="text">
+                        <div class="star">✦</div>
+                        <h2>聚光燈效應</h2>
+                        <img src="./images/redline.png" alt="redline" class="redline">
+                        <h3>你是不是覺得大家都在看你？</h3>
+                        <p>
+                            聚光燈效應（Spotlight Effect），指的是人們通常會高估他人<br>對自己外表、
+                            行為或錯誤的關注程度。這種現象是因為我們的<br>大腦天然地以自我為中心運作，
+                            導致我們覺得自己像是站在舞台<br>中央，被他人密切觀察。
+                        </p>
+                        <br>
+                        <p>
+                            展間內架設聚光燈，並於體驗者走秀時以燈光追隨，刻意營造<br>「聚光燈效應」，
+                            讓參與者沉浸於成為目光焦點的主角氛圍中，<br>親身感受被注視的心理衝擊與情感波動。
+                        </p>
+                    </div>
                 </div>
             </div>
-    
-            <div class="arch">
-                <div class="arch-content">
-                    <h2>透明錯覺</h2>
-                    <img src="./images/illusion_of_transparency.png" alt="Illusion of Transparency" class="text-image_b">
-                    <br>
-                    <a href="#b">
-                        <img src="./images/arrow.png" alt="Arrow Down">
-                    </a>
+        
+            <div class="section reverse" id="b">
+                <div class="inside">
+                    <div class="text">
+                        <div class="star">✦</div>
+                        <h2>透明錯覺</h2>
+                        <img src="./images/redline.png" alt="redline" class="redline">
+                        <h3>是不是覺得自己想法都被看穿了？</h3>
+                        <p>
+                            透明錯覺（Illusion of Transparency）是心理學中的另一種認知偏誤，<br>
+                            指的是人們通常會高估他人對自己內心感受或情緒的理解程度。<br>
+                            這種現象是因為我們對自己的情緒感知非常清楚，導致我們誤以為<br>
+                            他人也能同樣清楚地察覺。
+                        </p>
+                        <br>
+                        <p>
+                            展覽採半開放式空間設計，體驗者在過程中可能感覺到來自其他<br>觀眾的注視，
+                            這種感受實則源於自身的主觀認知，未必反映真實<br>情境。
+                            透過營造透明錯覺，展覽巧妙模擬了人們在公共場合中常<br>見的心理效應，
+                            使體驗者更深刻地感知到「透明錯覺」所帶來的<br>自我意識與不必要的焦慮。
+                        </p>
+                    </div>
+                    <img src="./images/illusion.png" alt="Illusion of Transparency">
                 </div>
             </div>
-    
-            <div class="arch">
-                <div class="arch-content">
-                    <h2>錯誤認知</h2>
-                    <img src="./images/cognitive_distortion.png" alt="Cognitive Distortion" class="text-image_c">
-                    <br>
-                    <a href="#c">
-                        <img src="./images/arrow.png" alt="Arrow Down">
-                    </a>
+        
+            <div class="section" id="c">
+                <div class="inside">
+                    <img src="./images/cognitive.png" alt="Cognitive Distortion">
+                    <div class="text">
+                        <div class="star">✦</div>
+                        <h2>錯誤認知</h2>
+                        <img src="./images/redline.png" alt="redline" class="redline">
+                        <h3>是不是老是覺得最糟糕的一定會發生？</h3>
+                        <p>
+                            錯誤認知（Cognitive Distortion）是心理學中指人們在<br>思考或理解事物時，
+                            因主觀偏見或扭曲的方式，對現實產<br>生不準確或消極的看法。
+                            這些認知偏差通常會影響我們的<br>情緒和行為，導致負面影響。
+                        </p>
+                        <br>
+                        <p>
+                            當體驗者在展場中進行走秀時，展間將播放模擬觀眾的批評<br>與謾罵聲，
+                            以具體呈現日常生活中人們對他人評價的誇大<br>想像，從而反映錯誤認知的形成過程，
+                            幫助體驗者探索<br>內心對外界反應的過度敏感與主觀投射。
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="section" id="a">
-            <div class="inside">
-                <img src="./images/spotlight.png" alt="Spotlight Effect">
-                <div class="text">
-                    <div class="star">✦</div>
-                    <h2>聚光燈效應</h2>
-                    <img src="./images/redline.png" alt="redline" class="redline">
-                    <h3>你是不是覺得大家都在看你？</h3>
-                    <p>
-                        聚光燈效應（Spotlight Effect），指的是人們通常會高估他人對自己外表、<br>
-                        行為或錯誤的關注程度。這種現象是因為我們的大腦天然地以自我為中心運作，<br>
-                        導致我們覺得自己像是站在舞台中央，被他人密切觀察。
-                    </p>
-                    <br>
-                    <p>
-                        展間內架設聚光燈，並於體驗者走秀時以燈光追隨，刻意營造「聚光燈效應」，<br>
-                        讓參與者沉浸於成為目光焦點的主角氛圍中，親身感受被注視的心理衝擊與情感波動。
-                    </p>
-                </div>
-            </div>
-        </div>
-    
-        <div class="section reverse" id="b">
-            <div class="inside">
-                <div class="text">
-                    <div class="star">✦</div>
-                    <h2>透明錯覺</h2>
-                    <img src="./images/redline.png" alt="redline" class="redline">
-                    <h3>是不是覺得自己想法都被看穿了？</h3>
-                    <p>
-                        透明錯覺（Illusion of Transparency）是心理學中的另一種認知偏誤，<br>
-                        指的是人們通常會高估他人對自己內心感受或情緒的理解程度。<br>
-                        這種現象是因為我們對自己的情緒感知非常清楚，<br>
-                        導致我們誤以為他人也能同樣清楚地察覺。
-                    </p>
-                    <br>
-                    <p>
-                        展覽採半開放式空間設計，體驗者在過程中可能感覺到來自其他觀眾的注視，<br>
-                        這種感受實則源於自身的主觀認知，未必反映真實情境。<br>
-                        透過營造透明錯覺，展覽巧妙模擬了人們在公共場合中常見的心理效應，<br>
-                        使體驗者更深刻地感知到「透明錯覺」所帶來的自我意識與不必要的焦慮。
-                    </p>
-                </div>
-                <img src="./images/illusion.png" alt="Illusion of Transparency">
-            </div>
-        </div>
-    
-        <div class="section" id="c">
-            <div class="inside">
-                <img src="./images/cognitive.png" alt="Cognitive Distortion">
-                <div class="text">
-                    <div class="star">✦</div>
-                    <h2>錯誤認知</h2>
-                    <img src="./images/redline.png" alt="redline" class="redline">
-                    <h3>是不是老是覺得最糟糕的一定會發生？</h3>
-                    <p>
-                        錯誤認知（Cognitive Distortion）是心理學中指人們在思考或理解事物時，<br>
-                        因主觀偏見或扭曲的方式，對現實產生不準確或消極的看法。<br>
-                        這些認知偏差通常會影響我們的情緒和行為，導致負面影響。
-                    </p>
-                    <br>
-                    <p>
-                        當體驗者在展場中進行走秀時，展間將播放模擬觀眾的批評與謾罵聲，<br>
-                        以具體呈現日常生活中人們對他人評價的誇大想像，從而反映錯誤認知的形成過程，<br>
-                        幫助體驗者探索內心對外界反應的過度敏感與主觀投射。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
 </body>
 </html>

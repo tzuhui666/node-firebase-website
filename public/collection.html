@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>作品呈現 | Glisper</title>
     <link rel="stylesheet" href="./css/collection.css">
+    <script src="./script/collection.js"></script>
 </head>
 <body>
     <!-- LOGO + 導覽列 -->
     <header>
-        <a href="index.html"><img src="./images/glisper.png" alt="GLISPER LOGO" class="logo"></a>
+        <button id="logoBtn">
+            <img src="./images/glisper.png" alt="GLISPER LOGO" class="logo">
+        </button>
         <nav class="nav-menu">
             <ul>
                 <li><a href="exhibition.html">展覽資訊</a></li>
@@ -19,21 +22,41 @@
         </nav>
     </header>
     
-
+    <div class="container">
+        <div class="search-container">
+            <!-- 搜尋欄 -->
+            <div class="search-bar">
+                <button class="search-icon">
+                    <img src="./images/search_icon.png" alt="Search Icon">
+                </button>
+                <input type="text" placeholder="請輸入欲查詢編號">
+            </div>
+        
+            <!-- 分類表 -->
+            <div class="category-bar">
+                <span class="category active" data-category="all" data-color="#000000">ALL</span>
+                <span class="category" data-category="#000000" data-color="#000000">黑白灰</span>
+                <span class="category" data-category="warm" data-color="#AB1F24">暖色</span>
+                <span class="category" data-category="light-warm" data-color="#f4bca9">淺暖</span>
+                <span class="category" data-category="deep-warm" data-color="#7c4120">深暖</span>
+                <span class="category" data-category="cold" data-color="#4fb88e">冷色</span>
+                <span class="category" data-category="light-cold" data-color="#c1e1c4">淺冷</span>
+                <span class="category" data-category="deep-cold" data-color="#346960">深冷</span>
+                <span class="category" data-category="pink-purple" data-color="#e84f7d">粉紫</span>
+                <span class="category" data-category="denim" data-color="#1e2b66">牛仔色</span>
+                <span class="category" data-category="neon" data-color="#dae1f2">螢光色</span>
+            </div>
+        </div>
+        
+        
+        
+        
+    
+       
+    </div>
     
 
-    <div class="search-bar">
-        <button class="search-icon">
-            <img src="./images/search_icon.png" alt="Search Icon">
-        </button>
-        <input type="text" placeholder="請輸入欲查詢編號">
-    </div>
-
-    <section class="content">
-        <div class="content-all">
-            <img src="./images/pic.png" alt="作品">
-        </div>
-    </section>
+    
     
 
 </body>

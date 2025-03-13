@@ -8,7 +8,7 @@ body, html {
     display: flex;
     flex-direction: column;
     scrollbar-width: none;
-    
+    scroll-behavior: smooth;
 }
 
 /* LOGO & 導覽列 */
@@ -17,7 +17,7 @@ header {
     display: flex;
     flex-direction: column; /* 讓 LOGO 和導覽列上下排列 */
     align-items: center; /* 讓 LOGO 置中 */
-    padding: 10px 0;
+    padding: 30px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -25,11 +25,32 @@ header {
     background: white;
     z-index: 1000;
 }
+.container{
+    background-color: #F3F3F3;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.8s ease-in-out;
+}
+
+body.slide-right {
+    transform: translateX(100%);
+}
+
+#logoBtn{
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
 
 /* LOGO 設定 */
 .logo {
-    height: 30px; /* 可以調整大小 */
-    margin-bottom: 10px; /* 與導覽列的距離 */
+    height: 46px; /* 可以調整大小 */
+    margin-bottom: 20px; /* 與導覽列的距離 */
+    margin-top: 15px;
 }
 
 /* 導覽列設定 */
@@ -50,7 +71,7 @@ header {
 .nav-menu a {
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -60,12 +81,23 @@ header {
     position: relative;
     width: 100%;
     height: 100vh;
-    margin-top: 100px;
+    margin-top: 110px;
 }
 
 .hero img {
     width: 100%;
     height: auto;
+}
+
+/* 透明灰色區塊（滾動箭頭會放在這之上） */
+.bottom-gray {
+    width: 100%;
+    height: 140px; /* 調整高度以適應設計 */
+    background-color: rgba(179, 179, 179, 0.3); /* 灰色 + 透明度 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 800; /* 確保它在內容上但在滾動箭頭下 */
 }
 
 
@@ -86,9 +118,10 @@ header {
 /* Read More 按鈕 */
 .scroll-down {
     position: absolute;
-    bottom: 20%;
+    bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 900; 
 }
 
 .scroll-down img {
@@ -96,23 +129,56 @@ header {
     max-width: 150px;
 }
 
+#more-info{
+    scroll-margin-top: 100px;
+}
+
 
 /* 展覽內容 */
 .exhibition-text {
     text-align: center;
-    margin-top: 100px;
     margin-bottom: 100px;
 }
 .exhibition-text img{
     width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
+    max-width: 900px;
+    margin-top: 120px;
 }
+
+.show-section-title,
+.music-section-title,
+.magazine-section-title {
+    position: relative; /* 避免影響整體佈局 */
+    opacity: 0;
+    transition: transform 1.2s ease-out, opacity 1.2s ease-out;
+}
+
+/* 進場動畫 */
+.show-section-title {
+    transform: translateX(-100px); /* 從左進入 */
+}
+.music-section-title {
+    transform: translateX(100px); /* 從右進入 */
+}
+.magazine-section-title {
+    transform: translateX(-100px); /* 從左進入 */
+}
+
+/* 進入視口時觸發 */
+.show-section-title.show,
+.music-section-title.show,
+.magazine-section-title.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 
 /* Show 區塊標題 */
 .show-section-title img {
     width: 100%;
-    max-width: 800px; /* 限制標題大小 */
+    max-width: 1500px; /* 限制標題大小 */
+    margin-bottom: 50px;
 }
 
 /* Show 內容 */
@@ -122,16 +188,18 @@ header {
 }
 .show-section img {
     width: 100%;
-    max-width: 600px;
+    max-width: 1700px;
     margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 
 /* Music 區塊標題 */
 .music-section-title img {
     width: 100%;
-    max-width: 800px; /* 限制標題大小 */
-    margin-left: 500px;
+    max-width: 1800px; /* 限制標題大小 */
+    margin-left: 100px;
+    margin-bottom: 50px;
 }
 
 /* Music 內容 */
@@ -141,7 +209,7 @@ header {
 }
 .music-section img{
     width: 100%;
-    max-width: 800px;
+    max-width: 1700px;
     margin-top: 20px;
 }
 
@@ -150,7 +218,8 @@ header {
 /* Magazine 區塊標題 */
 .magazine-section-title img {
     width: 100%;
-    max-width: 800px; /* 限制標題大小 */
+    max-width: 1500px; /* 限制標題大小 */
+    margin-bottom: 50px;
 }
 
 /* Magazine 內容 */
@@ -160,16 +229,16 @@ header {
 }
 .magazine-section img {
     width: 100%;
-    max-width: 800px;
+    max-width: 1700px;
     margin-top: 20px;
 }
 
 /* 作品列表按鈕 */
 .more-btn {
     display: block;
-    margin-top: -60px;
-    margin-left: 550px;
-    font-size: 24px;
+    margin-top: -130px;
+    margin-left: 1200px;
+    font-size: 40px;
     color: black;
     text-decoration: none;
     font-weight: bold;
@@ -196,3 +265,274 @@ header {
     margin-top: 20px;
     margin-bottom: 100px;
 }
+
+
+/* 展覽資訊背景 */
+.information {
+    background-color: rgb(0, 0, 0,0.5); /* 背景顏色 */
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 展覽標題 */
+.ex-info {
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.ex-info h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 50px;
+}
+
+/* 展覽資訊容器 */
+.ex-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* 左側展覽資訊 */
+.ex-text {
+    flex: 1;
+    min-width: 500px;
+    text-align: left;
+}
+
+.ex-item {
+    margin-bottom: 50px;
+}
+
+.ex-item h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.ex-item p {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+/* 日期圖片樣式 */
+.date-img {
+    width: 240px; /* 調整大小 */
+    height: auto;
+    margin: 10px 0;
+}
+
+/* 右側地圖區塊 */
+.ex-maps {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-end;
+}
+
+iframe {
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* 社交媒體連結 */
+.social-links {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.social-links a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+
+
+
+@media (max-width: 1440px) {
+    .logo {
+        height: 35px;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+    .nav-menu a {
+        font-size: 18px;
+    }
+
+    .hero img{
+        margin-top: 60px;
+    }
+
+    .overlay-text img {
+        max-width: 500px;
+    }
+
+    .scroll-down img {
+        max-width: 130px;
+    }
+
+    .exhibition-text img {
+        max-width: 800px;
+    }
+
+    .show-section-title img,
+    .magazine-section-title img {
+        max-width: 1200px;
+    }
+
+    .show-section img,
+    .magazine-section img {
+        max-width: 1300px;
+    }
+
+    .music-section-title img {
+        max-width: 1300px;
+        margin-left: 150px;
+    }
+
+    .music-section img {
+        max-width: 1300px;
+    }
+
+    .everyone img,
+    .everyone_1 img {
+        max-width: 500px;
+    }
+
+    .more-btn {
+        margin-top: -110px;
+        margin-left: 1000px;
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 1280px) {
+    /* 基本設定 */
+    body, html {
+        height: auto; /* 避免 100vh 造成內容超出 */
+    }
+
+    /* LOGO & 導覽列 */
+    header {
+        padding: 15px 0; /* 減少 padding 避免壓縮內容 */
+    }
+
+    .logo {
+        height: 25px; /* 縮小 LOGO 大小 */
+        margin-bottom: 10px;
+    }
+
+    .nav-menu ul {
+        gap: 30px; /* 減少選項間距 */
+    }
+
+    .nav-menu a {
+        font-size: 16px; /* 縮小文字 */
+    }
+
+    /* 主視覺區塊 */
+    .hero {
+        margin-top: 55px; /* 調整 margin 避免被 header 壓住 */
+        height: 90vh; /* 縮短視覺區高度 */
+    }
+
+    .hero img{
+        margin-top: 40px;
+        height: 96.5%;
+    }
+
+    /* 透明灰色區塊 */
+    .bottom-gray {
+        height: 100px; /* 減少灰色區塊高度 */
+        bottom: -15px;
+    }
+
+    /* 標題圖片 */
+    .overlay-text {
+        bottom: 40%; /* 調整標題位置 */
+    }
+
+    .overlay-text img {
+        max-width: 400px; /* 縮小標題大小 */
+    }
+
+    /* Read More 按鈕 */
+    .scroll-down {
+        bottom: -2%;
+    }
+
+    .scroll-down img {
+        max-width: 120px; /* 縮小按鈕 */
+    }
+
+    /* 展覽內容 */
+    .exhibition-text {
+        margin-top: 60px;
+        margin-bottom: 80px;
+    }
+
+    .exhibition-text img {
+        max-width: 700px; /* 縮小圖片 */
+    }
+
+    /* Show 區塊 */
+    .show-section-title img {
+        max-width: 1000px; /* 限制標題大小 */
+    }
+
+    .show-section img {
+        max-width: 1000px; /* 縮小內容圖片 */
+    }
+
+    /* Music 區塊 */
+    .music-section-title img {
+        max-width: 1100px;
+        margin-left: 200px; /* 減少偏移 */
+    }
+
+    .music-section img {
+        max-width: 1000px; /* 縮小內容 */
+    }
+
+    /* Magazine 區塊 */
+    .magazine-section-title img {
+        max-width: 1000px; /* 縮小標題 */
+    }
+
+    .magazine-section img {
+        max-width: 1000px; /* 縮小內容 */
+    }
+
+    /* 作品列表按鈕 */
+    .more-btn {
+        margin-top: -80px;
+        margin-left: 800px; /* 縮小按鈕偏移 */
+        font-size: 30px; /* 縮小字體 */
+    }
+
+    #more-info{
+        scroll-margin-top: 10px;
+    }
+}
+
+
+
+
+
+
