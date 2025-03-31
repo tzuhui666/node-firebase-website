@@ -131,6 +131,7 @@ body.slide-right {
 
 #more-info{
     scroll-margin-top: 100px;
+    margin-bottom: 150px;
 }
 
 
@@ -246,13 +247,82 @@ body.slide-right {
 }
 
 /* 文字雲 */
-.everyone{
+.glisper-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+  
+.glisper-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+}
+  
+.glisper-image {
+    width: 100%;
+    display: block;
+}
+  
+.floating-text-container {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    height: 360px; /* 每行40px */
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .scrolling-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollLoop 10s linear infinite; /* 持續滑動，時間可調 */
+  }
+  
+  .scrolling-line {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px white;
+  }
+
+  .scrolling-line.active {
+    font-size: 26px;
+    color: #000000;
+    font-weight: bold;
+    text-shadow: 2px 2px 6px rgba(87, 87, 87, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  
+  
+  
+  @keyframes scrollLoop {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%); /* 一半：因為我們複製了一次資料 */
+    }
+  }
+  
+  
+  
+  
+  
+/* .everyone{
     text-align: center;
     margin-top: 150px;
 }
 .everyone img{
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     margin-top: 20px;
 }
 
@@ -261,10 +331,10 @@ body.slide-right {
 }
 .everyone_1 img{
     width: 100%;
-    max-width: 600px;
-    margin-top: 20px;
+    max-width: 900px;
+    margin-top: 50px;
     margin-bottom: 100px;
-}
+} */
 
 
 /* 展覽資訊背景 */
@@ -360,6 +430,30 @@ iframe {
 }
 
 
+/* 回到頂部按鈕樣式 */
+#backToTop {
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: none; /* 預設隱藏 */
+    z-index: 1100;
+}
+
+#backToTop img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+#backToTop:hover img {
+    transform: scale(1.1);
+}
+
 
 
 
@@ -376,7 +470,7 @@ iframe {
     }
 
     .hero img{
-        margin-top: 60px;
+        margin-top: 65px;
     }
 
     .overlay-text img {
@@ -419,6 +513,12 @@ iframe {
         margin-top: -110px;
         margin-left: 1000px;
         font-size: 35px;
+    }
+
+    #backToTop {
+        position: fixed;
+        bottom: 20px;
+        right: 120px;
     }
 }
 

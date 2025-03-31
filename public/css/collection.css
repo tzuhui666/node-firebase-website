@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: "Arial", sans-serif;
-    background-color: #ffffff;
+    background-color: #F3F3F3;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -85,6 +85,7 @@ body.slide-right {
     max-width: 1680px;
     margin: 0 auto;
     margin-top: 200px;
+    position: sticky;
 }
 
 /* 搜尋欄 */
@@ -139,12 +140,17 @@ body.slide-right {
 
 /* 分類按鈕 */
 .category {
-    cursor: pointer;
     color: #666;
-    transition: color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;  /* 確保文字與圖標對齊 */
+    font-size: 18px;
+    line-height: 24px; /* 調整高度以匹配其他文字 */
+    padding: 5px 10px;
+    cursor: pointer;
     position: relative;
-    padding-bottom: 5px; /* 預留底線空間 */
+    transition: color 0.3s ease-in-out;
 }
+
 
 /* 選中分類的樣式 */
 .category.active {
@@ -155,10 +161,110 @@ body.slide-right {
 
 /* ✦ 星星符號 */
 .star {
+    margin-right: 5px;  /* 增加間距，避免貼太近 */
     font-size: 28px;
-    margin-left: 10px;
     transition: color 0.3s ease-in-out;
 }
+
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 40px 0;
+    justify-items: center;
+}
+
+.gallery-item img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+
+
+.lightbox-detail {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+  
+  .detail-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/ex.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  .detail-content {
+    display: flex;
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    max-width:1000px;
+    color: white;
+    padding: 40px;
+    gap: 90px;
+  }
+
+  .detail-number {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .detail-left img {
+    max-height: 65vh;
+    border-radius: 10px;
+  }
+  
+  .detail-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    gap: 30px;
+    flex: 1;
+    line-height: 1.2;
+  }
+  
+  #music-player {
+    width: 100%;
+  }
+  
+  .close-detail {
+    position: absolute;
+    top: -40px;
+    right: -50px;
+    font-size: 80px;
+    color: white;
+    z-index: 3;
+    cursor: pointer;
+  }
+  
+
 
 
 
@@ -208,6 +314,18 @@ body.slide-right {
     .star {
         font-size: 24px;
     }
+
+    .detail-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 28px;
+        font-weight: bold;
+        gap: 30px;
+        flex: 1;
+        line-height: 1.0;
+      }
+    
 }
 
 @media (max-width: 1280px) {
@@ -266,3 +384,8 @@ body.slide-right {
         font-size: 22px;
     }
 }
+
+
+
+
+

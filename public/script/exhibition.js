@@ -33,3 +33,132 @@ document.addEventListener("DOMContentLoaded", function() {
     titles.forEach(title => observer.observe(title));
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTop = document.getElementById("backToTop");
+    const container = document.querySelector(".container");
+
+    // 監聽滾動事件
+    window.addEventListener("scroll", function () {
+        const containerTop = container.offsetTop;
+        if (window.scrollY >= containerTop) {
+            backToTop.style.display = "block"; // 顯示按鈕
+        } else {
+            backToTop.style.display = "none"; // 隱藏按鈕
+        }
+    });
+
+    // 點擊按鈕回到 container 頂部
+    backToTop.addEventListener("click", function () {
+        container.scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBW0QXag1YeZ49FdYAFaAQQU5RaHOKiq5o",
+    authDomain: "node-firebase-website-glisper.firebaseapp.com",
+    projectId: "node-firebase-website-glisper",
+    storageBucket: "node-firebase-website-glisper.firebasestorage.app",
+    messagingSenderId: "292415345379",
+    appId: "1:292415345379:web:beff9d7f372fba94fb6bd6",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const container = document.getElementById("scrolling-content");
+
+async function loadLoopingText() {
+const snapshot = await getDocs(collection(db, "glisper-data"));
+const ansList = [];
+
+snapshot.forEach((doc) => {
+    const data = doc.data();
+    if (data.ans_1) {
+    ansList.push(data.ans_1);
+    }
+});
+
+ansList.forEach((text, index) => {
+    const div = document.createElement("div");
+    div.className = "scrolling-line";
+    div.textContent = text;
+    div.dataset.textId = text; // 或用 index，例如 `${index}`
+    container.appendChild(div);
+  });
+  
+  ansList.forEach((text, index) => {
+    const div = document.createElement("div");
+    div.className = "scrolling-line";
+    div.textContent = text;
+    div.dataset.textId = text; // 或 `${index}-copy`
+    container.appendChild(div);
+  });
+  
+}
+
+loadLoopingText();
+
+
+
+let currentActive = null;
+let currentActiveId = null;
+const centerRadius = 20;
+
+function highlightMiddleLine() {
+  const container = document.querySelector('.floating-text-container');
+  const lines = document.querySelectorAll('.scrolling-line');
+  const containerRect = container.getBoundingClientRect();
+  const middleY = containerRect.top + containerRect.height / 2;
+
+  // 檢查目前 active 是否還在中心範圍
+  if (currentActive) {
+    const activeRect = currentActive.getBoundingClientRect();
+    const activeMiddle = activeRect.top + activeRect.height / 2;
+    const distance = Math.abs(middleY - activeMiddle);
+
+    if (distance < centerRadius) {
+      return; // 還在中間就不換
+    } else {
+      currentActive.classList.remove('active');
+      currentActive = null;
+      currentActiveId = null;
+    }
+  }
+
+  // 找出最靠近中間的一行
+  let closestLine = null;
+  let closestDistance = Infinity;
+
+  lines.forEach(line => {
+    const lineRect = line.getBoundingClientRect();
+    const lineMiddle = lineRect.top + lineRect.height / 2;
+    const distance = Math.abs(middleY - lineMiddle);
+
+    if (distance < closestDistance) {
+      closestDistance = distance;
+      closestLine = line;
+    }
+  });
+
+  // 若是同樣文字（data-text-id 相同）就不要再次放大
+  if (
+    closestLine &&
+    closestLine.dataset.textId !== currentActiveId
+  ) {
+    closestLine.classList.add('active');
+    currentActive = closestLine;
+    currentActiveId = closestLine.dataset.textId;
+  }
+}
+
+
+
+setInterval(highlightMiddleLine, 100);
+
+
+
