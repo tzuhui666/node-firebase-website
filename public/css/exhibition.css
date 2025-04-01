@@ -632,6 +632,134 @@ iframe {
 }
 
 
+@media (max-width: 390px) {
+    /* 基本設定 */
+    body, html {
+        height: auto; /* 避免 100vh 造成內容超出 */
+    }
+
+    /* LOGO & 導覽列 */
+    header {
+        position: fixed;
+        display: flex;
+        top: -20;
+        left: -235px;
+        background: white;
+        z-index: 1000;
+    }
+    
+    .logo {
+        height: 16px;
+        /* margin-left: -20px; */
+        margin-bottom: 15px;
+        margin-top: 50px;
+    }
+    
+    .nav-menu ul {
+        gap: 30px;
+    }
+    
+    .nav-menu a {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    /* 主視覺區塊 */
+    .hero {
+            /* width: 1480px; */
+            width: 450%;
+            height: 50%;
+            margin-left: -895px;/*調整 margin 避免被 header 壓住*/
+            margin-top: 100px; 
+        
+    }
+
+    .hero img{
+        margin-top: 40px;
+        height: 96.5%;
+    }
+
+    /* 透明灰色區塊 */
+    .bottom-gray{
+        bottom: 190px;
+        height: 120px;
+    }
+
+    /* 標題圖片 */
+    .overlay-text{
+        /* width: -1080px; */
+        /* left: -800px; */
+        width: 20%;
+        margin-left: 215px;
+        margin-bottom: 175px;
+    }
+
+    .overlay-text img {
+        max-width: 400px; /* 縮小標題大小 */
+    }
+
+    /* Read More 按鈕 */
+    .scroll-down {
+        bottom: -2%;
+    }
+
+    .scroll-down img {
+        max-width: 100px;
+        margin-left: 425px;
+        margin-bottom: 230px;
+    }
+/*--------目前改到這裡--展覽資訊圖片還沒把超出頁面的裁掉*/
+
+    /* 展覽內容 */
+    .exhibition-text {
+        margin-top: 60px;
+        margin-bottom: 80px;
+    }
+
+    .exhibition-text img {
+        max-width: 700px; /* 縮小圖片 */
+    }
+
+    /* Show 區塊 */
+    .show-section-title img {
+        max-width: 1000px; /* 限制標題大小 */
+    }
+
+    .show-section img {
+        max-width: 1000px; /* 縮小內容圖片 */
+    }
+
+    /* Music 區塊 */
+    .music-section-title img {
+        max-width: 1100px;
+        margin-left: 200px; /* 減少偏移 */
+    }
+
+    .music-section img {
+        max-width: 1000px; /* 縮小內容 */
+    }
+
+    /* Magazine 區塊 */
+    .magazine-section-title img {
+        max-width: 1000px; /* 縮小標題 */
+    }
+
+    .magazine-section img {
+        max-width: 1000px; /* 縮小內容 */
+    }
+
+    /* 作品列表按鈕 */
+    .more-btn {
+        margin-top: -80px;
+        margin-left: 800px; /* 縮小按鈕偏移 */
+        font-size: 30px; /* 縮小字體 */
+    }
+
+    #more-info{
+        scroll-margin-top: 10px;
+    }
+}
+
 
 
 
