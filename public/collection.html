@@ -3,19 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>展覽資訊 | GLISPER</title>
-    <link rel="stylesheet" href="./css/exhibition.css">
-    <script type="module" src="./script/exhibition.js"></script>
+    <title>作品呈現 | Glisper</title>
+    <link rel="stylesheet" href="./css/collection.css">
+    <script type="module" src="./script/collection.js"></script>
 </head>
 <body>
-
-    <!-- 回到頂部按鈕 -->
-    <button id="backToTop">
-        <img src="./images/back_to_top.png" alt="回到頂部">
-    </button>
-    
-     <!-- LOGO + 導覽列 -->
-     <header>
+    <!-- LOGO + 導覽列 -->
+    <header>
         <button id="logoBtn">
             <img src="./images/glisper.png" alt="GLISPER LOGO" class="logo">
         </button>
@@ -28,148 +22,108 @@
         </nav>
     </header>
     
-    
-    <!-- 主視覺大圖 -->
-    <section class="hero">
-        <img src="./images/exhibition.png" alt="展覽主視覺">
-        
-        <!-- 標題圖片 -->
-        <div class="overlay-text">
-            <img src="./images/exhibition_word.png" alt="展覽資訊標題">
-        </div>
-
-        <!-- Read more -->
-        <div class="scroll-down">
-            <a href="#more-info"><img src="./images/read_more.png" alt="Read more"></a>
-            <!-- <a href="#more-info">
-                
-            </a> -->
-        </div>
-
-        <!-- 底部灰色區塊（放在滾動箭頭上方） -->
-        <div class="bottom-gray"></div>
-        
-    </section>
-
     <div class="container">
+        <div class="search-container">
+            <!-- 搜尋欄 -->
+            <div class="search-bar">
+                <button class="search-icon">
+                    <img src="./images/search_icon.png" alt="Search Icon">
+                </button>
+                <input type="text" placeholder="請輸入欲查詢編號">
+            </div>
         
-        <!-- 展覽資訊內容 -->
-        <section class="exhibition-content" id="more-info">
-
-            <!-- 展覽文字 -->
-            <div class="exhibition-text">
-                <img src="./images/exhibition_text.png" alt="exhibition 文字">
-            </div>
-
-
-            <!-- Show 區塊 -->
-            <div class="show-section-title">
-                <img src="./images/show.png" alt="Show 標題">
-            </div>
-            <div class="show-section">
-                <img src="./images/show_pic.png" alt="時裝秀體驗">
-            </div>
-
-    <br>
-            <!-- Music 區塊 -->
-            <div class="music-section-title">
-                <img src="./images/music.png" alt="Music 標題">
-            </div>
-
-            <div class="music-section">
-                <img src="./images/music_pic.png" alt="音樂圖示">
-            </div>
-
-    <br>
-            <!-- Magazine 區塊 -->
-            <div class="magazine-section-title">
-                <img src="./images/magazine.png" alt="Magazine 標題">
-            </div>
-
-            <div class="magazine-section">
-                <img src="./images/magazine_pic.png" alt="時尚雜誌展示">
-                <a href="collection.html" class="more-btn">作品列表 ></a>
-            </div>
-
-        </section>
-
-        <!-- <section class="cloud">
-            
-            <div class="everyone">
-                <img src="./images/Let’s see what everyone has to say!.png" alt="everyone 文字">
-            </div>
-            <div class="everyone_1">
-                <img src="./images/c.png" alt="文字雲">
-            </div>
-        </section> -->
-
-        <section class="glisper-section">
-            <div class="glisper-container">
-                <img src="./images/c.png" alt="GLISPER" class="glisper-image" />
-                <div class="floating-text-container">
-                    <div class="scrolling-content" id="scrolling-content">
-                      <!-- JS 動態插入大量文字（超過 7 行） -->
-                    </div>
-                  </div>
-                  
-                  
-            </div>
-        </section>
-          
-        
-    </div>
-        
-
-        <div class="information">
-            <!-- 展覽資訊 -->
-            <section class="ex-info" id="exhibition">
-                <br>
-                <h2>哪裡看展覽？</h2>
-            
-                <div class="ex-details">
-                    <div class="ex-text">
-                        <div class="ex-item">
-                            <h3>校內展</h3>
-                            <img src="./images/0407.png" alt="04.07 Mon. - 04.11 Fri." class="date-img">
-                            <p>元智大學 五館三樓 / 六館玻璃屋</p>
-                            <p>地址：桃園市中壢區遠東路135號</p>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="ex-item">
-                            <h3>校外展</h3>
-                            <img src="./images/0425.png" alt="04.07 Mon. - 04.11 Fri." class="date-img">
-                            <p>松山文創園區 三號倉庫</p>
-                            <p>地址：台北市信義區光復南路133號</p>
-                        </div>
-                    </div>
-                    <div class="ex-maps">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.876466655706!2d121.26086727416467!3d24.97031727785769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681f5490d43fcd%3A0x186eb5a7e52b332b!2z5YWD5pm65aSn5a24!5e0!3m2!1szh-TW!2stw!4v1739521060642!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <br>
-                        <br>
-                    
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.708870485089!2d121.55801767416791!3d25.043952177809945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abbf51442d17%3A0xc2fa78ad153b9383!2zMTEw5Y-w5YyX5biC5L-h576p5Y2A5YWJ5b6p5Y2X6LevMTMz6Jmf!5e0!3m2!1szh-TW!2stw!4v1739521097493!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </section>
-
-            <br><br>
-            <div class="social-links">
-                <a href="https://www.instagram.com/ohglisper" target="_blank">@ohglisper</a>
-                <a href="https://www.instagram.com/yzuic_28" target="_blank">@yzuic_28</a>
-                <a href="">元智大學資訊傳播學系 第28屆畢業製作作品展</a>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <a href="https://www.instagram.com/kumaowo__" target="_blank">服裝作品攝影照授權提供  @kumaowo__</a>
+            <!-- 分類表 -->
+            <div class="category-bar">
+                <span class="category active" data-category="all" data-color="#000000">彩虹</span>
+                <span class="category" data-category="#000000" data-color="#000000">霧黑</span>
+                <span class="category" data-category="warm" data-color="#AB1F24">暖陽</span>
+                <span class="category" data-category="light-warm" data-color="#f4bca9">晨橘</span>
+                <span class="category" data-category="deep-warm" data-color="#7c4120">焦糖</span>
+                <span class="category" data-category="cold" data-color="#4fb88e">冷霧</span>
+                <span class="category" data-category="light-cold" data-color="#c1e1c4">冰冷</span>
+                <span class="category" data-category="deep-cold" data-color="#346960">寒鐵</span>
+                <span class="category" data-category="pink-purple" data-color="#e84f7d">微光</span>
+                <span class="category" data-category="denim" data-color="#1e2b66">丹藍</span>
+                <span class="category" data-category="neon" data-color="#dae1f2">霓光</span>
             </div>
         </div>
 
+      
+       <!-- 圖片展示區
+       <div class="gallery">
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_冷色.png" alt="GLISPER 封面 1"
+                    data-detail="./images/作品呈現-作品詳細資訊 (6).png">
+            </div>
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_深冷.png" alt="GLISPER 封面 2"
+                    data-detail="./images/作品呈現-作品詳細資訊 (4).png">
+            </div>
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_深暖.png" alt="GLISPER 封面 3"
+                    data-detail="./images/作品呈現-作品詳細資訊 (5).png">
+            </div>
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_淺冷.png" alt="GLISPER 封面 4"
+                    data-detail="./images/作品呈現-作品詳細資訊 (2).png">
+            </div>
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_牛仔色系.png" alt="GLISPER 封面 5"
+                    data-detail="./images/作品呈現-作品詳細資訊 (1).png">
+            </div>
+            <div class="gallery-item">
+                <img src="./images/雜誌封面模板1_粉紫色系.png" alt="GLISPER 封面 6"
+                    data-detail="./images/作品呈現-作品詳細資訊 (3).png">
+            </div>
+        </div>
+        -->
+    
+        <!-- 詳細資訊彈出層 
+        <div class="lightbox" id="lightbox">
+            <span class="close">&times;</span>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="作品詳細資訊">
+        </div> -->
+
+        <div class="gallery"></div>
+
+        <!-- <div class="lightbox" id="lightbox">
+            <span class="close">&times;</span>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="作品詳細資訊">
+        </div> -->
+
+        <!-- 詳細資訊視窗 -->
+        <div class="lightbox-detail" id="lightboxDetail">
+            <div class="detail-bg"></div>
+            <div class="detail-content">
+              <div class="detail-left">
+                <span class="detail-number" id="detail-number"></span>
+                <img id="detail-img" src="" alt="pose">
+              </div>
+              <div class="detail-right">
+                <p id="heart-rate">心率：</p>
+                <p id="color">衣服風格：</p>
+                <p id="music">音樂風格：</p>
+                <p id="instrument">樂器：</p>
+                <audio id="music-player" controls>
+                  <source id="music-src" src="" type="audio/mpeg">
+                  您的瀏覽器不支援音樂播放。
+                </audio>
+              </div>
+              <span class="close-detail" id="closeDetail">&times;</span>
+            </div>
+          </div>
+          
+  
+
+
+        
+        
+    
+       
+    </div>
+    
+
+    
     
 
 </body>
