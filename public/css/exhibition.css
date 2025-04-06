@@ -632,7 +632,7 @@ iframe {
 }
 
 
-@media (max-width: 390px) {
+@media (max-width: 390px)/*IPhone 12-pro*/ {
     /* 基本設定 */
     body, html {
         /* height: auto; 避免 100vh 造成內容超出 */
@@ -672,18 +672,18 @@ iframe {
         height: 50%;
         margin-left: -895px;/*調整 margin 避免被 header 壓住*/
         margin-top: 100px; 
-        clip-path: inset(0% 0% 20% 0%);
+        clip-path: inset(0% 0% 19.9% 0%);
 
     }
 
     .hero img{
-        margin-top: 40px;
+        margin-top: 35px;
         height: 96.5%;
     }
 
     /* 透明灰色區塊 */
     .bottom-gray{
-        bottom: 185px;
+        bottom: 183px;
         height: 120px;
     }
 
@@ -713,52 +713,345 @@ iframe {
     .container{
         margin-top:-190px;
     }
-/*--------目前改到這裡---------*/
+
+    #backToTop {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
 
     /* 展覽內容 */
     .exhibition-text {
-        margin-top: 60px;
-        margin-bottom: 80px;
+        visibility: hidden;
+        position: relative;
+    }
+
+    .exhibition-text::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 262px;    /* 圖片寬度 */
+        height: 133px;   /* 圖片高度 */
+        background-image: url('../img/exhibition_text.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     .exhibition-text img {
-        max-width: 700px; /* 縮小圖片 */
+        max-width: 390px; /* 縮小圖片 */
     }
 
     /* Show 區塊 */
-    .show-section-title img {
-        max-width: 1000px; /* 限制標題大小 */
+    .show-section-title.show img {
+        /* max-width: 1000px; 限制標題大小 */
+        visibility: hidden;
+        position: relative;
+    }
+    .show-section-title.show:after{
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: 0%;
+        transform: translateX(0%);
+        width: 380px;    /* 圖片寬度 */
+        height: 89px;   /* 圖片高度 */
+        background-image: url('../img/show.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     .show-section img {
-        max-width: 1000px; /* 縮小內容圖片 */
+        /* max-width: 1000px; 縮小內容圖片 */
+        visibility: hidden;
+        position: relative;
+    }
+    .show-section::after{
+        content: "";
+        position: absolute;
+        top: 1210px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 353px;    /* 圖片寬度 */
+        height: 352px;   /* 圖片高度 */
+        background-image: url('../img/show_content.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     /* Music 區塊 */
-    .music-section-title img {
-        max-width: 1100px;
-        margin-left: 200px; /* 減少偏移 */
+    .music-section-title.show img {
+        /* max-width: 1100px;
+        margin-left: 200px; 減少偏移 */
+        visibility: hidden;
+        position: relative;
+    }
+    .music-section-title.show::after{
+        content: "";
+        position: absolute;
+        top: -125px;
+        left: 5%;
+        transform: translateX(50%);
+        width: 370px;    /* 圖片寬度 */
+        height: 89px;   /* 圖片高度 */
+        background-image: url('../img/music.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     .music-section img {
-        max-width: 1000px; /* 縮小內容 */
+        /* max-width: 1000px; 縮小內容 */
+        visibility: hidden;
+        position: relative;
+    }
+    .music-section::after{
+        content: "";
+        position: absolute;
+        top: 1750px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 352px;    /* 圖片寬度 */
+        height: 438px;   /* 圖片高度 */
+        background-image: url('../img/music_content.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     /* Magazine 區塊 */
-    .magazine-section-title img {
-        max-width: 1000px; /* 縮小標題 */
+    .magazine-section-title.show img {
+        /* max-width: 1000px; 縮小標題 */
+        visibility: hidden;
+        position: relative;
+    }
+    .magazine-section-title.show::after{
+        content: "";
+        position: absolute;
+        top: 75px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 383px;    /* 圖片寬度 */
+        height: 107px;   /* 圖片高度 */
+        background-image: url('../img/magazine.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 999;
+        visibility: visible; /* 顯示圖片 */
     }
 
     .magazine-section img {
-        max-width: 1000px; /* 縮小內容 */
+        /* max-width: 1000px; 縮小內容 */
+        visibility: hidden;
+        position: relative;
+    }
+    .magazine-section::after{
+        content: "";
+        position: absolute;
+        top: 2415px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 352px;    /* 圖片寬度 */
+        height: 720px;   /* 圖片高度 */
+        background-image: url('../img/magazine_content.png');
+        background-size: cover;
+        background-position: center;
+        display: block;
+        z-index: 899;
+        visibility: visible; /* 顯示圖片 */
+    }
+    /* 文字雲 */
+    .everyone{
+        text-align: center;
+        margin-top: 450px;
+    }
+    .everyone img{
+        width: 100%;
+        max-width: 325px;
+        margin-top: 30px;
+    }
+
+    .everyone_1{
+        text-align: center;
+    }
+    .everyone_1 img{
+        width: 100%;
+        max-width: 300px;
+        margin-top: 30px;
+        /* margin-bottom: 100px; */
+    }
+    .information{
+        /* position: absolute; */
+        /* width: 390px;    圖片寬度 */
+        margin-top: -30px;
+        clip-path: inset(2% 0% 0% 0%);
+    }
+    /* 展覽標題 */
+    .ex-info {
+        text-align: center;
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .ex-info h2 {
+        font-size: 21px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-top: -25px;
+        margin-bottom: 35px;
+    }
+
+    /* 展覽資訊容器 */
+    .ex-details {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        width: 100%;
+        top: 10px;
+    }
+
+    /* 左側展覽資訊 */
+    .ex-text {
+        flex: 1;
+        min-width: 500px;
+        text-align: left;
+    }
+
+    .ex-item {
+        margin-left: 40px;
+        margin-bottom: 20px;
+    }
+
+    .ex-item h3 {
+        font-size: 21px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+
+    .ex-item p {
+        color: #ffffff;
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    /* 日期圖片樣式 */
+    .date-img {
+        width: 240px; /* 調整大小 */
+        height: auto;
+        margin: 10px 0;
+    }
+
+    /* 右側地圖區塊 */
+    /*圖片找不到*/
+    .ex-maps {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-end;
+        margin-top: 170px;
+        margin-right: 0px;
+        /* visibility: visible; 顯示圖片 */
+        z-index: 999;
+
+    }
+
+    iframe {
+        width: 350px;
+        height: 233px;
+        /* border-radius: 8px; */
+        border: none;
+        /* z-index: 999; */
+    }
+
+    /* 社交媒體連結 */
+    .social-links {
+        text-align: center;
+        margin-left: -350px;
+        margin-top: 60px;
+    }
+
+    .social-links a {
+        margin: 0 20px;
+        /* margin-right: -200px; */
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        font-size: 14px;
+    }   
+    .social-links .a1{
+        display: flex;
+        position: absolute;
+        margin-left: 375px;
+
+    }
+    .social-links .a1 img{
+        position: absolute;
+        margin-left: -5px;
+        margin-top: -22px;
+        visibility: visible; /* 顯示圖片 */
+
+    }
+
+    .social-links .a2{
+        display: flex;
+        position: absolute;
+        margin-left: 375px;
+        margin-top: 35px;
+    }
+    .social-links .a2 img{
+        position: absolute;
+        margin-left: -5px;
+        margin-top: -22px;
+        visibility: visible; /* 顯示圖片 */
+
+    }
+    .social-links .a3{
+        width: 40%;
+        position: absolute;
+        margin-left: 160px;
+    }
+    .social-links .a4{
+        width: 40%;
+        position: absolute;
+        margin-left: 160px;
+        margin-top: 35px;
+    }
+    /*服飾圖片授權提供*/
+    .social-links .b1{
+        position: relative;
+        left: 180px;
+        top:80px;
     }
 
     /* 作品列表按鈕 */
-    .more-btn {
-        margin-top: -80px;
-        margin-left: 800px; /* 縮小按鈕偏移 */
-        font-size: 30px; /* 縮小字體 */
-    }
+/* .more-btn {
+    display: block;
+    margin-bottom: 230px;
+    margin-left: -200px;
+    font-size: 40px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 999; /* 讓它顯示在最上層 
+    visibility: hidden;
+} */
 
     #more-info{
         scroll-margin-top: 10px;
