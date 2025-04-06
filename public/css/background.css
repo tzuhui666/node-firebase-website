@@ -1,3 +1,4 @@
+/* 基本設定 */
 body, html {
     margin: 0;
     padding: 0;
@@ -155,6 +156,9 @@ body.slide-right {
     width: 100%;
     max-width: 50px;
 }
+
+
+
 
 
 /* 主容器 */
@@ -331,7 +335,6 @@ p {
     cursor: pointer;
     display: none; /* 預設隱藏 */
     z-index: 1100;
-    scroll-margin-top: 1110px;
 }
 
 #backToTop img {
@@ -624,6 +627,8 @@ p {
     }
 
 }
+
+
 @media (max-width: 390px) {
     /*基本設定*/
     body,html{
@@ -662,7 +667,6 @@ p {
         top: -20px;
         /* bottom: -400px; */
         clip-path: inset(0% 0% 10% 0%);
-        /* overflow-y: hidden; */
     }
     .overlay-text{
         /* width: -1080px; */
@@ -693,68 +697,54 @@ p {
         position: relative;
         visibility: hidden;/* 隱藏原本的圖片，但保留它的空間 */
     }
-
-    .background-text::after {
+    .background-text::after{/*圖片還是無法出現，待解決*/
         content: "";
         position: absolute;
-        top: 985px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 326px;
-        height: 499px;
-        background-image: url('../img/background_content.png'); /* 根據你的路徑調整 */
+        overflow: visible;
+        top: 900px;
+        left: 0;
+        width: 100%;
+        height: 75%;
+        /* background-color: #de8585; */
+        background-image: url('/glisper/img/background_content.png');
         background-size: cover;
         background-position: center;
         display: block;
         z-index: 999;
         
     }
+
     .container{
         margin-top:-110px;
     }
 
     /* 紅色星星 */
     .redstar img {
-        visibility: hidden;
+        width: 15px;
+        position: absolute;
+        top: 900px;
+        left: 190px;
         /* max-width: 40px; */
         /* z-index: 200; */
     }
-
-    #backToTop {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-    }
     
+/*--------目前改到這裡注意下方區備註！！！--------*/
+
     /* 三個拱門區塊 */
     .three {
-        margin-top: 250px;
-        flex-direction: column;
-        gap: 0;
-        align-items: center;
+        gap: 5px; 
         position: relative;
+        margin-top: 400px;
+    } 
+    .arch{
+        width: 170px;
+        height: 200px;
     }
-
-    .arch {
-        width: 143px;
-        height: 164.88px; /* 高度加高讓文字與圖片能堆疊 */
-        margin-bottom: 30px;
-        border-radius: 0;
-        border-top-left-radius: 180px;
-        border-top-right-radius: 180px;
-        position: relative;
-    }
-   
-    /*聚光燈效應*/
-    #arch1{
-        position: absolute;
-        left: 40px;
-        scroll-margin-top: 210px;/*按Back to top回到三效應*/
-    }
+    /*聚光燈效應，未加拱門*/
     .arch-content1{
         position: absolute;
-        left: 25px;
-        top: 30px;
+        left: 30px;
+        /* top: 350px; */
     }
     .arch-content1 h2{
         font-size: 18px;
@@ -767,38 +757,28 @@ p {
         width: 35px;
         margin-top: 10%;
     }
-    /*透明錯覺*/
-    #arch2{
-        position: absolute;
-        left: 213px;
-        top: 50px
-    }
+    /*透明錯覺，未加拱門*/
     .arch-content2{
         position: absolute;
-        left: 25px;
-        top: 30px;
+        left: 100px;
+        top: 220px;
     }
     .arch-content2 h2{
         font-size: 18px;
         margin-bottom: 8%;
     }
     .arch-content2 .text-image_b {
-        width: 95px;
+        width: 120px;
     }
     .arch-content2 .Arrow-Down_b{
         width: 35px;
         margin-top: 10%;
     }
-    /*錯誤認知*/
-    #arch3{
-        position: absolute;
-        left: 40px;
-        top: 155px;
-    }
+    /*錯誤認知，未加拱門*/
     .arch-content3{
         position: absolute;
-        left: 25px;
-        top: 30px;
+        left: -257px;
+        top: 370px;
     }
     .arch-content3 h2{
         font-size: 18px;
@@ -812,82 +792,72 @@ p {
         margin-top: 10%;
     }
     
-    /* 去除 hover 動畫，手機不需要 */
-    .arch:hover {
-        background-color: unset;
-        transform: unset;
+
+    /*下面效應我想全部換成圖片，但因為我還沒解決上面貼圖片問題，所以沒動作*/
+
+    /* 圖片與文字排列 */
+    .inside {
+        margin-top:200px;
+        gap: 80px;
     }
 
-    .arch:hover img {
-        transform: unset;
+    .inside img {
+        width: 120px; /* 縮小圖片 */
     }
     
-    
-    #a {
-        visibility: hidden;
+    /*聚光燈*/
+    .inside .Spotlight-Effec_a{
         position: relative;
-        scroll-margin-top: 120px;
+        margin-top: -825px;
+        margin-left: 35px;
+    }
+    .inside .Spotlight-Effec_text_a{
+        position: relative;
+        /* margin-top: 200px; */
+        margin-right: 10px;
+    }
+    /*透明錯覺*/
+    /*錯誤認知*/
+    .text {
+        max-width: 1000px;
+        left: -200px;
+        /* margin-top: -550px; */
+    } 
+
+    .star {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin-bottom: 50px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .redline {
+        max-width: 200%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    /* 滾動區塊 */
+    #a {
+        scroll-margin-top: 55px;
     }
     
     #b {
-        visibility: hidden;
-        position: relative;
-        scroll-margin-top: 890px;
+        scroll-margin-top: 55px;
     }
     
     #c {
-        visibility: hidden;
-        position: relative;
-        scroll-margin-top: 1510px;
-    }
-
-    #a::after {
-        content: "";
-        position: absolute;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;    /* 圖片寬度 */
-        height: 544px;   /* 圖片高度 */
-        background-image: url('../img/spot.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    #b::after {
-        content: "";
-        position: absolute;
-        top: -675px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 85%;    /* 圖片寬度 */
-        height: 544px;   /* 圖片高度 */
-        background-image: url('../img/illu.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    #c::after {
-        content: "";
-        position: absolute;
-        top: -1275px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;    /* 圖片寬度 */
-        height: 544px;   /* 圖片高度 */
-        /* background-color: #D70000; */
-        background-image: url('../img/wrong.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
+        scroll-margin-top: 55px;
     }
     
     #more-info{
@@ -897,10 +867,6 @@ p {
     #backToTop {
         position: fixed;
         bottom: 20px;
-        right: 140px;
-    }
-    #more-info.background-content {
-        /* clip-path: inset(0% 0% 0% 0%); */
-        /* margin-bottom: -2000px; */
+        right: 120px;
     }
 }
