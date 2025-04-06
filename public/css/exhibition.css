@@ -632,7 +632,7 @@ iframe {
 }
 
 
-@media (max-width: 390px)/*IPhone 12-pro*/ {
+@media (max-width: 393px)/*IPhone 12-pro*/ {
     /* 基本設定 */
     body, html {
         /* height: auto; 避免 100vh 造成內容超出 */

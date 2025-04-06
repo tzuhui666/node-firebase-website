@@ -629,7 +629,7 @@ p {
 }
 
 
-@media (max-width: 390px) {
+@media (max-width: 393px) {
     /*基本設定*/
     body,html{
         overflow-x: hidden; /*來避免水平滾動條*/
