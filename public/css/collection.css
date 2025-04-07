@@ -265,7 +265,13 @@ body.slide-right {
   }
   
   #closeDetail {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 32px;
+    color: #fff;
     cursor: pointer;
+    z-index: 9999;
   }
   
 
@@ -391,87 +397,162 @@ body.slide-right {
 
 
 @media (max-width: 393px) {
-    /* 基本設定 */
     body, html {
-        /* height: auto; 避免 100vh 造成內容超出 */
-        overflow-x: hidden; /*來避免水平滾動條*/
+        overflow-x: hidden;
+        background-color: #F3F3F3;
     }
 
-    /* LOGO & 導覽列 */
     header {
-        position: fixed;
-        display: flex;
-        top: -20;
-        left: 0px;
-        background: white;
-        z-index: 1000;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
     }
 
     .logo {
-        height: 16px;
-        /* margin-left: -20px; */
-        margin-bottom: 15px;
-        margin-top: 50px;
+        height: 30px;
+        margin-top: 30px;
+        margin-bottom: 10px;
     }
 
     .nav-menu ul {
-        gap: 30px;
+        gap: 20px;
     }
 
     .nav-menu a {
         font-size: 14px;
-        padding: 15px;
+        padding: 10px;
     }
 
-    /* 搜尋區域 */
+     /* 搜尋欄縮小置中 */
     .search-container {
-        /* position: fixed; */
-        margin-top: 130px;
-        max-width: 1200px;
-
+        margin-top: 140px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* 搜尋欄 */
     .search-bar {
-        width: 310px;
-        height: 20px;
-        margin-left: 0px;
-        margin-top: 20px;
-        max-width: 1100px;
-        padding: 6px 10px;
+        width: 85%;
+        max-width: 320px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        background: white;
+        border-radius: 50px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 6px 14px;
+        margin-bottom: 10px;
     }
 
     .search-bar input {
-        font-size: 12px;
-        margin-left: 15px;
-
+        font-size: 14px;
+        padding-left: 10px;
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: #333;
     }
 
     .search-icon img {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
+        opacity: 0.6;
     }
 
-    /* 分類表 */
+    /* 分類欄左右滑動 */
     .category-bar {
+        display: flex;
+        overflow-x: auto; /* 開啟橫向卷軸 */
+        overflow-y: hidden; /* 避免高度變動 */
+        white-space: nowrap;
+        gap: 20px;
+        padding: 10px 10px;
+        width: 100%;
+        font-size: 14px;
+        scroll-behavior: smooth; /* 滑動順暢 */
+        -webkit-overflow-scrolling: touch; /* iOS裝置滑動優化 */
+    }
+
+    /* 隱藏滾動條 (可選) */
+    .category-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 每個分類按鈕 */
+    .category {
+        flex-shrink: 0;
+        padding: 6px 12px;
+        background: none;
+        border-radius: 20px;
+        color: #333;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s ease;
+    }
+
+    /* 被選中的分類 */
+    .category.active {
+        color: black;
+        font-weight: bold;
+        border-bottom: 2px solid black;
+    }
+
+
+    /* 圖片置中 */
+    .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 40px;
+    }
+
+    .gallery-item img {
+        width: 80%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 詳細資訊視窗 */
+    .detail-content {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .detail-left img {
+        max-height: 40vh;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .detail-number {
+        top: 10px;
+        left: 10px;
+        font-size: 28px;
+    }
+
+    .detail-right {
+        font-size: 16px;
         gap: 10px;
-        top: -10px;
-        margin-left: 300px;
-        width: 1100px;
-    }
-    .category.active{
-        font-size: 14px;
-    }
-    .category{
-        font-size: 14px;
     }
 
-    /* 星星符號 */
-    .star {
-        font-size: 22px;
+    .close-detail {
+        top: 10px;
+        right: 10px;
+        font-size: 40px;
     }
 
+    audio {
+        width: 100%;
+    }
 }
+
 
 
 

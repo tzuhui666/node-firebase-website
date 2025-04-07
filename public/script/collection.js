@@ -38,16 +38,16 @@ function filterGalleryByColor(categoryKey) {
     // 對應的分類映射表
     const colorCategoryMap = {
         "all": [],
-        "#000000": ["Black", "White", "Gray"],
+        "#000000": ["BlackWhiteGray"],
         "warm": ["Warm Colors"],
         "cold": ["Cool Colors"],
-        "light-warm": ["Light Warm Colors"],
-        "light-cold": ["Light Cool Colors"],
-        "deep-warm": ["Deep Warm Colors"],
-        "deep-cold": ["Deep Cool Colors"],
-        "pink-purple": ["Pink & Purple"],
-        "denim": ["Denim Blue (Indigo)"],
-        "neon": ["Neon Bright Colors"]
+        "light-warm": ["Light Warm"],
+        "light-cold": ["Light Cool"],
+        "deep-warm": ["Dark Warm"],
+        "deep-cold": ["Dark Cool"],
+        "pink-purple": ["PurplePink"],
+        "denim": ["Denim Blue"],
+        "neon": ["Neon Bright"]
     };
 
     const allowedColors = colorCategoryMap[categoryKey] || [];
@@ -146,15 +146,24 @@ async function loadGalleryFromFirestore() {
   dataList.forEach((data, index) => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
-    galleryItem.setAttribute("data-color", data.color); // ✅ ← 這行是關鍵
-    galleryItem.setAttribute("data-number", index + 1); // ✅ 加上編號！
+    galleryItem.setAttribute("data-color", data.color || ""); 
+    galleryItem.setAttribute("data-number", index + 1);
+
+    // ✅ 支援 pose_photos 是陣列或字串
+    let photoUrl = "";
+    if (Array.isArray(data.pose_photos)) {
+      photoUrl = data.pose_photos[0];
+    } else if (typeof data.pose_photos === "string") {
+      photoUrl = data.pose_photos;
+    } else {
+      photoUrl = "./images/default.png"; // 預設圖避免壞圖
+    }
 
     const img = document.createElement('img');
-    img.src = data.pose_photos[0]; // 預設第一張照片
+    img.src = photoUrl;
     img.alt = "GLISPER pose photo";
     img.style.cursor = 'pointer';
 
-    // 點擊觸發詳細視窗
     img.addEventListener('click', () => {
       showDetailPopup(data, index + 1);
     });
@@ -163,10 +172,13 @@ async function loadGalleryFromFirestore() {
     galleryContainer.appendChild(galleryItem);
   });
 
-  // 關閉彈窗事件
-  document.getElementById('closeDetail').addEventListener('click', () => {
-    document.getElementById('lightboxDetail').style.display = 'none';
-  });
+  // 關閉彈窗
+  const closeBtn = document.getElementById('closeDetail');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      document.getElementById('lightboxDetail').style.display = 'none';
+    });
+  }
 
   document.getElementById('lightboxDetail').addEventListener('click', (e) => {
     if (e.target.id === 'lightboxDetail') {
@@ -181,87 +193,90 @@ async function loadGalleryFromFirestore() {
   });
 }
 
+
+
 // 顯示自訂彈出視窗
 function showDetailPopup(data, number) {
-    document.getElementById('detail-img').src = data.pose_photos[0];
-    document.getElementById('detail-number').innerText = `${number}.`;
-  
-    // ✅ 轉換衣服風格（color）
-    const colorMap = {
-      "Black, White, Gray": "黑白灰",
-      "Warm Colors": "暖色系",
-      "Cool Colors": "冷色系",
-      "Light Warm Colors": "淺暖",
-      "Light Cool Colors": "淺冷",
-      "Deep Warm Colors": "深暖",
-      "Deep Cool Colors": "深冷",
-      "Pink & Purple": "粉紫色系",
-      "Denim Blue (Indigo)": "牛仔色系",
-      "Neon Bright Colors": "螢光亮色系"
-    };
-  
-    const translatedColor = colorMap[data.color] || data.color;
-  
-    // ✅ 轉換音樂風格（music）
-    const musicMap = {
-      "Classical Music": "古典音樂",
-      "Sports Music": "流行音樂",
-      "Theatrical Music": "戲劇音樂",
-      "Japanese Music": "日本音樂"
-    };
-  
-    const translatedMusic = musicMap[data.music] || data.music;
-  
-    // ✅ 轉換樂器（instrument）
-    const instrumentMap = {
-      "Piano": "鋼琴",
-      "Strings": "弦樂",
-      "Harmonica": "口琴",
-      "Bagpipes": "風笛",
-      "Guitar": "吉他",
-      "Flute": "長笛",
-      "Violin": "小提琴",
-      "Tambourine": "鈴鼓",
-      "Cello": "大提琴",
-      "Clarinet": "單簧管",
-      "Harp": "豎琴",
-      "Triangle": "三角鐵",
-      "Acoustic guitar": "木吉他",
-      "Xylophone": "木琴",
-      "Wind chimes": "風鈴",
-      "Pan flute": "排笛",
-      "Bassoon": "低音管",
-      "Hand drum": "手鼓",
-      "Double bass": "低音提琴",
-      "Electric piano": "電鋼琴",
-      "Synthesizer": "合成器",
-      "Deep strings": "深沉弦樂",
-      "Bells": "鐘聲",
-      "Accordion": "手風琴",
-      "Electric guitar": "電吉他",
-      "Jazz drums": "爵士鼓",
-      "Electronic percussion": "電子打擊樂",
-      "Cymbals": "鈸"
-    };
-  
-   
-    const translatedInstrumentList = data.instrument.map((inst) => {
-      const translated = instrumentMap[inst] || inst;
-      return `${translated}`;
-    }).join(" 、 ");
-  
-    // ✅ 套用到畫面上
-    document.getElementById('heart-rate').innerText = `心率：${data.average_heart_rate} bpm / 一分鐘`;
-    document.getElementById('color').innerText = `衣服風格：${translatedColor}`;
-    document.getElementById('music').innerText = `音樂風格：${translatedMusic}`;
-    document.getElementById('instrument').innerText = `樂器：${translatedInstrumentList}`;
-  
-    // ✅ 音樂播放
-    document.getElementById('music-src').src = data.music_url;
-    document.getElementById('music-player').load();
-  
-    document.getElementById('lightboxDetail').style.display = 'flex';
-  }
+  // ✅ 安全地取得圖片網址
+  const photoUrl = Array.isArray(data.pose_photos)
+    ? data.pose_photos[0]
+    : data.pose_photos || "./images/default.png";
+
+  document.getElementById('detail-img').src = photoUrl;
+  document.getElementById('detail-number').innerText = `${number}.`;
+
+  // 轉換衣服風格
+  const colorMap = {
+    "BlackWhiteGray": "黑白灰",
+    "Warm Colors": "暖色系",
+    "Cool Colors": "冷色系",
+    "Light Warm": "淺暖",
+    "Light Cool": "淺冷",
+    "Dark Warm": "深暖",
+    "Dark Cool": "深冷",
+    "PurplePink": "粉紫色系",
+    "Denim Blue": "牛仔色系",
+    "Neon Bright": "螢光亮色系"
+  };
+  const translatedColor = colorMap[data.color] || data.color;
+
+  // 轉換音樂風格
+  const musicMap = {
+    "Classical Music": "古典音樂",
+    "Sports Music": "流行音樂",
+    "Theatrical Music": "戲劇音樂",
+    "Japanese Music": "日本音樂"
+  };
+  const translatedMusic = musicMap[data.music] || data.music;
+
+  // 轉換樂器
+  const instrumentMap = {
+    "Piano": "鋼琴",
+    "Strings": "弦樂",
+    "Harmonica": "口琴",
+    "Bagpipes": "風笛",
+    "Guitar": "吉他",
+    "Flute": "長笛",
+    "Violin": "小提琴",
+    "Tambourine": "鈴鼓",
+    "Cello": "大提琴",
+    "Clarinet": "單簧管",
+    "Harp": "豎琴",
+    "Triangle": "三角鐵",
+    "Acoustic guitar": "木吉他",
+    "Xylophone": "木琴",
+    "Wind chimes": "風鈴",
+    "Pan flute": "排笛",
+    "Bassoon": "低音管",
+    "Hand drum": "手鼓",
+    "Double bass": "低音提琴",
+    "Electric piano": "電鋼琴",
+    "Synthesizer": "合成器",
+    "Deep strings": "深沉弦樂",
+    "Bells": "鐘聲",
+    "Accordion": "手風琴",
+    "Electric guitar": "電吉他",
+    "Jazz drums": "爵士鼓",
+    "Electronic percussion": "電子打擊樂",
+    "Cymbals": "鈸"
+  };
+
+  const translatedInstrumentList = Array.isArray(data.instrument)
+    ? data.instrument.map(inst => instrumentMap[inst] || inst).join(" 、 ")
+    : (data.instrument || "無");
+
+  document.getElementById('heart-rate').innerText = `心率：${data.average_heart_rate || "?"} bpm / 一分鐘`;
+  document.getElementById('color').innerText = `衣服風格：${translatedColor}`;
+  document.getElementById('music').innerText = `音樂風格：${translatedMusic}`;
+  document.getElementById('instrument').innerText = `樂器：${translatedInstrumentList}`;
+
+  // 播放音樂
+  document.getElementById('music-src').src = data.music_url || "";
+  document.getElementById('music-player').load();
+
+  document.getElementById('lightboxDetail').style.display = 'flex';
+}
+
   
   
 
