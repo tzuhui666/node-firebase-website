@@ -225,14 +225,6 @@ body.slide-right {
     gap: 90px;
   }
 
-  .detail-number {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    font-size: 48px;
-    font-weight: bold;
-    color: white;
-  }
   
   .detail-left img {
     max-height: 65vh;
@@ -531,11 +523,6 @@ body.slide-right {
         object-fit: contain;
     }
 
-    .detail-number {
-        top: 10px;
-        left: 10px;
-        font-size: 28px;
-    }
 
     .detail-right {
         font-size: 16px;

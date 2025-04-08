@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// ✅ Firebase 初始化
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
@@ -135,9 +136,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// ✅ 清除網址參數
+function clearURLParams() {
+  const baseUrl = window.location.origin + window.location.pathname;
+  window.history.pushState({}, '', baseUrl);
+}
 
-
-// 抓取 glisper-data 並動態生成圖片展示 + 詳細彈窗資料
+// ✅ 載入作品資料與圖片
 async function loadGalleryFromFirestore() {
   const galleryContainer = document.querySelector('.gallery');
   const querySnapshot = await getDocs(collection(db, "glisper-data"));
@@ -146,18 +151,12 @@ async function loadGalleryFromFirestore() {
   dataList.forEach((data, index) => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
-    galleryItem.setAttribute("data-color", data.color || ""); 
-    galleryItem.setAttribute("data-number", index + 1);
+    galleryItem.setAttribute("data-color", data.color || "");
+    galleryItem.setAttribute("data-number", data.number || index + 1);
 
-    // ✅ 支援 pose_photos 是陣列或字串
-    let photoUrl = "";
-    if (Array.isArray(data.pose_photos)) {
-      photoUrl = data.pose_photos[0];
-    } else if (typeof data.pose_photos === "string") {
-      photoUrl = data.pose_photos;
-    } else {
-      photoUrl = "./images/default.png"; // 預設圖避免壞圖
-    }
+    const photoUrl = Array.isArray(data.pose_photos)
+      ? data.pose_photos[0]
+      : data.pose_photos || "./images/default.png";
 
     const img = document.createElement('img');
     img.src = photoUrl;
@@ -165,47 +164,45 @@ async function loadGalleryFromFirestore() {
     img.style.cursor = 'pointer';
 
     img.addEventListener('click', () => {
-      showDetailPopup(data, index + 1);
+      showDetailPopup(data, data.number || index + 1);
+      window.history.pushState({}, '', `?number=${data.number || index + 1}`);
     });
 
     galleryItem.appendChild(img);
     galleryContainer.appendChild(galleryItem);
   });
 
-  // 關閉彈窗
   const closeBtn = document.getElementById('closeDetail');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       document.getElementById('lightboxDetail').style.display = 'none';
+      clearURLParams();
     });
   }
 
   document.getElementById('lightboxDetail').addEventListener('click', (e) => {
     if (e.target.id === 'lightboxDetail') {
       document.getElementById('lightboxDetail').style.display = 'none';
+      clearURLParams();
     }
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.getElementById('lightboxDetail').style.display = 'none';
+      clearURLParams();
     }
   });
 }
 
-
-
-// 顯示自訂彈出視窗
+// ✅ 顯示詳細視窗
 function showDetailPopup(data, number) {
-  // ✅ 安全地取得圖片網址
   const photoUrl = Array.isArray(data.pose_photos)
     ? data.pose_photos[0]
     : data.pose_photos || "./images/default.png";
 
   document.getElementById('detail-img').src = photoUrl;
-  document.getElementById('detail-number').innerText = `${number}.`;
-
-  // 轉換衣服風格
+  
   const colorMap = {
     "BlackWhiteGray": "黑白灰",
     "Warm Colors": "暖色系",
@@ -218,49 +215,25 @@ function showDetailPopup(data, number) {
     "Denim Blue": "牛仔色系",
     "Neon Bright": "螢光亮色系"
   };
-  const translatedColor = colorMap[data.color] || data.color;
-
-  // 轉換音樂風格
   const musicMap = {
     "Classical Music": "古典音樂",
     "Sports Music": "流行音樂",
     "Theatrical Music": "戲劇音樂",
     "Japanese Music": "日本音樂"
   };
-  const translatedMusic = musicMap[data.music] || data.music;
-
-  // 轉換樂器
   const instrumentMap = {
-    "Piano": "鋼琴",
-    "Strings": "弦樂",
-    "Harmonica": "口琴",
-    "Bagpipes": "風笛",
-    "Guitar": "吉他",
-    "Flute": "長笛",
-    "Violin": "小提琴",
-    "Tambourine": "鈴鼓",
-    "Cello": "大提琴",
-    "Clarinet": "單簧管",
-    "Harp": "豎琴",
-    "Triangle": "三角鐵",
-    "Acoustic guitar": "木吉他",
-    "Xylophone": "木琴",
-    "Wind chimes": "風鈴",
-    "Pan flute": "排笛",
-    "Bassoon": "低音管",
-    "Hand drum": "手鼓",
-    "Double bass": "低音提琴",
-    "Electric piano": "電鋼琴",
-    "Synthesizer": "合成器",
-    "Deep strings": "深沉弦樂",
-    "Bells": "鐘聲",
-    "Accordion": "手風琴",
-    "Electric guitar": "電吉他",
-    "Jazz drums": "爵士鼓",
-    "Electronic percussion": "電子打擊樂",
-    "Cymbals": "鈸"
+    "Piano": "鋼琴", "Strings": "弦樂", "Harmonica": "口琴", "Bagpipes": "風笛",
+    "Guitar": "吉他", "Flute": "長笛", "Violin": "小提琴", "Tambourine": "鈴鼓",
+    "Cello": "大提琴", "Clarinet": "單簧管", "Harp": "豎琴", "Triangle": "三角鐵",
+    "Acoustic guitar": "木吉他", "Xylophone": "木琴", "Wind chimes": "風鈴",
+    "Pan flute": "排笛", "Bassoon": "低音管", "Hand drum": "手鼓", "Double bass": "低音提琴",
+    "Electric piano": "電鋼琴", "Synthesizer": "合成器", "Deep strings": "深沉弦樂",
+    "Bells": "鐘聲", "Accordion": "手風琴", "Electric guitar": "電吉他",
+    "Jazz drums": "爵士鼓", "Electronic percussion": "電子打擊樂", "Cymbals": "鈸"
   };
 
+  const translatedColor = colorMap[data.color] || data.color;
+  const translatedMusic = musicMap[data.music] || data.music;
   const translatedInstrumentList = Array.isArray(data.instrument)
     ? data.instrument.map(inst => instrumentMap[inst] || inst).join(" 、 ")
     : (data.instrument || "無");
@@ -270,60 +243,24 @@ function showDetailPopup(data, number) {
   document.getElementById('music').innerText = `音樂風格：${translatedMusic}`;
   document.getElementById('instrument').innerText = `樂器：${translatedInstrumentList}`;
 
-  // 播放音樂
   document.getElementById('music-src').src = data.music_url || "";
   document.getElementById('music-player').load();
 
   document.getElementById('lightboxDetail').style.display = 'flex';
 }
 
-  
-  
+// ✅ 根據網址參數自動開啟彈窗
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadGalleryFromFirestore();
 
-// 執行載入
-document.addEventListener('DOMContentLoaded', () => {
-  loadGalleryFromFirestore();
-});
+  const params = new URLSearchParams(window.location.search);
+  const targetNumber = params.get('number');
+  if (!targetNumber) return;
 
-
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.querySelector(".search-bar input");
-    const searchButton = document.querySelector(".search-icon");
-  
-    // 點擊搜尋圖示
-    searchButton.addEventListener("click", () => {
-      const inputValue = searchInput.value.trim();
-      filterByNumber(inputValue);
-    });
-  
-    // 或按 Enter 鍵
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        const inputValue = searchInput.value.trim();
-        filterByNumber(inputValue);
-      }
-    });
-  });
-  
-  // 篩選顯示對應編號圖片
-  function filterByNumber(number) {
-    const allItems = document.querySelectorAll(".gallery-item");
-  
-    if (!number) {
-      // 若未輸入，顯示全部
-      allItems.forEach(item => item.style.display = "block");
-      return;
-    }
-  
-    allItems.forEach(item => {
-      if (item.getAttribute("data-number") === number) {
-        item.style.display = "block";
-      } else {
-        item.style.display = "none";
-      }
-    });
+  const querySnapshot = await getDocs(collection(db, "glisper-data"));
+  const dataList = querySnapshot.docs.map(doc => doc.data());
+  const matched = dataList.find(data => String(data.number) === targetNumber);
+  if (matched) {
+    showDetailPopup(matched, targetNumber);
   }
-  
+});
