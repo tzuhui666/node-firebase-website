@@ -149,29 +149,33 @@ async function loadGalleryFromFirestore() {
   const dataList = querySnapshot.docs.map(doc => doc.data());
 
   dataList.forEach((data, index) => {
+    const privacy = (data.privacy_choice || "").toLowerCase();
+    if (privacy === "disagree") return; // ✅ 只有 agree 或空值才顯示
+  
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     galleryItem.setAttribute("data-color", data.color || "");
     galleryItem.setAttribute("data-number", data.number || index + 1);
-
+  
     const photoUrl = Array.isArray(data.pose_photos)
       ? data.pose_photos[0]
       : data.pose_photos || "./images/default.png";
-
+  
     const img = document.createElement('img');
     img.src = photoUrl;
     img.alt = "GLISPER pose photo";
     img.style.cursor = 'pointer';
-
+  
     img.addEventListener('click', () => {
       showDetailPopup(data, data.number || index + 1);
       window.history.pushState({}, '', `?number=${data.number || index + 1}`);
     });
-
+  
     galleryItem.appendChild(img);
     galleryContainer.appendChild(galleryItem);
   });
 
+  
   const closeBtn = document.getElementById('closeDetail');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -221,22 +225,43 @@ function showDetailPopup(data, number) {
     "Theatrical Music": "戲劇音樂",
     "Japanese Music": "日本音樂"
   };
+  // 轉換樂器
   const instrumentMap = {
-    "Piano": "鋼琴", "Strings": "弦樂", "Harmonica": "口琴", "Bagpipes": "風笛",
-    "Guitar": "吉他", "Flute": "長笛", "Violin": "小提琴", "Tambourine": "鈴鼓",
-    "Cello": "大提琴", "Clarinet": "單簧管", "Harp": "豎琴", "Triangle": "三角鐵",
-    "Acoustic guitar": "木吉他", "Xylophone": "木琴", "Wind chimes": "風鈴",
-    "Pan flute": "排笛", "Bassoon": "低音管", "Hand drum": "手鼓", "Double bass": "低音提琴",
-    "Electric piano": "電鋼琴", "Synthesizer": "合成器", "Deep strings": "深沉弦樂",
-    "Bells": "鐘聲", "Accordion": "手風琴", "Electric guitar": "電吉他",
-    "Jazz drums": "爵士鼓", "Electronic percussion": "電子打擊樂", "Cymbals": "鈸"
+    "Piano": "鋼琴",
+    "Strings": "弦樂",
+    "Harmonica": "口琴",
+    "Bagpipes": "風笛",
+    "Guitar": "吉他",
+    "Flute": "長笛",
+    "Violin": "小提琴",
+    "Tambourine": "鈴鼓",
+    "Cello": "大提琴",
+    "Clarinet": "單簧管",
+    "Harp": "豎琴",
+    "Triangle": "三角鐵",
+    "Acoustic Guitar": "木吉他",
+    "Xylophone": "木琴",
+    "Wind Chimes": "風鈴",
+    "Pan Flute": "排笛",
+    "Bassoon": "低音管",
+    "Hand Drums": "手鼓",
+    "Double Bass": "低音提琴",
+    "Electric Piano": "電鋼琴",
+    "Synthesizer": "合成器",
+    "Deep Strings": "深沉弦樂",
+    "Bells": "鐘聲",
+    "Accordion": "手風琴",
+    "Electric Guitar": "電吉他",
+    "Jazz Drums": "爵士鼓",
+    "Electronic Percussion": "電子打擊樂",
+    "Cymbals": "鈸"
   };
 
   const translatedColor = colorMap[data.color] || data.color;
   const translatedMusic = musicMap[data.music] || data.music;
   const translatedInstrumentList = Array.isArray(data.instrument)
-    ? data.instrument.map(inst => instrumentMap[inst] || inst).join(" 、 ")
-    : (data.instrument || "無");
+  ? data.instrument.map(inst => instrumentMap[inst] || inst).join(" 、 ")
+  : (data.instrument || "無");
 
   document.getElementById('heart-rate').innerText = `心率：${data.average_heart_rate || "?"} bpm / 一分鐘`;
   document.getElementById('color').innerText = `衣服風格：${translatedColor}`;
@@ -259,8 +284,11 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   const querySnapshot = await getDocs(collection(db, "glisper-data"));
   const dataList = querySnapshot.docs.map(doc => doc.data());
-  const matched = dataList.find(data => String(data.number) === targetNumber);
+  const matched = dataList.find(data => 
+    String(data.number) === targetNumber && data.privacy_choice === "agree"
+  );
   if (matched) {
     showDetailPopup(matched, targetNumber);
   }
+  
 });
