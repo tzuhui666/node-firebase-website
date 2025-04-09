@@ -186,13 +186,13 @@ body.slide-right {
 }
 
 /* 框架內部 */
-.arch-content {
+#arch-content {
     text-align: center;
     line-height: 1.8;
 }
 
 /* 中文標題 */
-.arch-content h2 {
+#arch-content h2 {
     font-size: 30px;
     font-weight: bold;
     color: #000;
@@ -200,26 +200,26 @@ body.slide-right {
 }
 
 /* 英文字圖片 */
-.arch-content .text-image_a {
+#arch-content .text-image_a {
     width: 180px;
     height: auto;
     margin-bottom: 20px;
 }
 
-.arch-content .text-image_b {
+#arch-content .text-image_b {
     width: 210px;
     height: auto;
     margin-bottom: 20px;
 }
 
-.arch-content .text-image_c {
+#arch-content .text-image_c {
     width: 200px;
     height: auto;
     margin-bottom: 20px;
 }
 
 /* 箭頭 */
-.arch-content img {
+#arch-content img {
     width: 35px;
     height: auto;
     transition: transform 0.3s ease;
@@ -394,19 +394,19 @@ p {
     }
 
     /* 內容框內字體縮小 */
-    .arch-content h2 {
+    #arch-content h2 {
         font-size: 28px;
     }
 
-    .arch-content .text-image_a {
+    #arch-content .text-image_a {
         width: 160px;
     }
 
-    .arch-content .text-image_b {
+    #arch-content .text-image_b {
         width: 180px;
     }
 
-    .arch-content .text-image_c {
+    #arch-content .text-image_c {
         width: 170px;
     }
 
@@ -556,19 +556,19 @@ p {
         margin-top: -100px;
     }
 
-    .arch-content h2 {
+    #arch-content h2 {
         font-size: 26px;
     }
 
-    .arch-content .text-image_a {
+    #arch-content .text-image_a {
         width: 140px;
     }
 
-    .arch-content .text-image_b {
+    #arch-content .text-image_b {
         width: 160px;
     }
 
-    .arch-content .text-image_c {
+    #arch-content .text-image_c {
         width: 150px;
     }
 
@@ -758,19 +758,21 @@ p {
     }
     .arch-content1{
         position: absolute;
-        left: 25px;
+        left: 0px;
         top: 30px;
+    
     }
     .arch-content1 h2{
-        font-size: 18px;
+        font-size: 10px;
         margin-bottom: 8%;
     }
     .arch-content1 .text-image_a {
-        width: 95px;
+        width: 60px;
     }
     .arch-content1 .Arrow-Down_a{
-        width: 35px;
-        margin-top: 10%;
+        width: 20px;
+        position: relative;
+        margin-top: 5%;
     }
     /*透明錯覺*/
     #arch2{
@@ -780,11 +782,11 @@ p {
     }
     .arch-content2{
         position: absolute;
-        left: 25px;
+        left: -10px;
         top: 30px;
     }
     .arch-content2 h2{
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 8%;
     }
     .arch-content2 .text-image_b {
@@ -802,11 +804,11 @@ p {
     }
     .arch-content3{
         position: absolute;
-        left: 25px;
+        left: 0px;
         top: 30px;
     }
     .arch-content3 h2{
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 8%;
     }
     .arch-content3 .text-image_c {

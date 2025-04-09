@@ -300,6 +300,9 @@ body.slide-right {
     transition: all 0.3s ease;
   }
   
+
+
+  
   
   
   
@@ -416,6 +419,10 @@ iframe {
 }
 
 /* 社交媒體連結 */
+.name{
+    color: #ffffff;
+}
+
 .social-links {
     text-align: center;
     margin-top: 60px;
@@ -427,6 +434,20 @@ iframe {
     color: rgb(255, 255, 255);
     font-weight: bold;
     font-size: 20px;
+}
+/* 所有超連結清除底線與變色（針對社群區） */
+.social-links a,
+.social-links a:link,
+.social-links a:visited,
+.social-links a:hover,
+.social-links a:active,
+.b1,
+.b1:link,
+.b1:visited,
+.b1:hover,
+.b1:active {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 
@@ -632,7 +653,7 @@ iframe {
 }
 
 
-@media (max-width: 393px)/*IPhone 12-pro*/ {
+@media (max-width: 750px)/*IPhone 12-pro*/ {
     /* 基本設定 */
     body, html {
         /* height: auto; 避免 100vh 造成內容超出 */
@@ -916,41 +937,50 @@ iframe {
         margin-bottom: 35px;
     }
 
-    /* 展覽資訊容器 */
+    /* 展覽資訊 */
     .ex-details {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        max-width: 1200px;
-        width: 100%;
-        top: 10px;
+        flex-direction: column;
+        gap: 60px;
+        align-items: center;
     }
-
-    /* 左側展覽資訊 */
-    .ex-text {
-        flex: 1;
-        min-width: 500px;
-        text-align: left;
+    
+    .ex-detail-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        border-radius: 12px;
+        width: 90%;
     }
-
+    
     .ex-item {
-        margin-left: 40px;
+        text-align: center;
         margin-bottom: 20px;
     }
-
+    
     .ex-item h3 {
-        font-size: 21px;
+        font-size: 20px;
         font-weight: bold;
         color: #ffffff;
         margin-bottom: 10px;
     }
-
+    
     .ex-item p {
+        font-size: 16px;
         color: #ffffff;
-        font-size: 18px;
         margin: 5px 0;
     }
-
+    
+    .ex-map iframe {
+        width: 100%;
+        max-width: 320px;
+        height: 220px;
+        border-radius: 8px;
+        border: none;
+    }
+  
+    
     /* 日期圖片樣式 */
     .date-img {
         width: 240px; /* 調整大小 */
@@ -958,19 +988,7 @@ iframe {
         margin: 10px 0;
     }
 
-    /* 右側地圖區塊 */
-    /*圖片找不到*/
-    .ex-maps {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        align-items: flex-end;
-        margin-top: 170px;
-        margin-right: 0px;
-        /* visibility: visible; 顯示圖片 */
-        z-index: 999;
 
-    }
 
     iframe {
         width: 350px;
@@ -980,67 +998,98 @@ iframe {
         /* z-index: 999; */
     }
 
-    /* 社交媒體連結 */
-    .social-links {
-        text-align: center;
-        margin-left: -350px;
-        margin-top: 60px;
-    }
+/* 社交媒體連結 - 手機版排版優化 */
+.social-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 30px;
+    gap: 12px;
+    margin-top: 40px;
+}
 
-    .social-links a {
-        margin: 0 20px;
-        /* margin-right: -200px; */
-        text-decoration: none;
-        color: rgb(255, 255, 255);
-        font-weight: bold;
-        font-size: 14px;
-    }   
-    .social-links .a1{
-        display: flex;
-        position: absolute;
-        margin-left: 375px;
+.social-left,
+.social-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
 
-    }
-    .social-links .a1 img{
-        position: absolute;
-        margin-left: -5px;
-        margin-top: -22px;
-        visibility: visible; /* 顯示圖片 */
+.social-right a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    text-decoration: none;
+}
 
-    }
+.social-right img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
 
-    .social-links .a2{
-        display: flex;
-        position: absolute;
-        margin-left: 375px;
-        margin-top: 35px;
-    }
-    .social-links .a2 img{
-        position: absolute;
-        margin-left: -5px;
-        margin-top: -22px;
-        visibility: visible; /* 顯示圖片 */
 
-    }
-    .social-links .a3{
-        width: 40%;
-        position: absolute;
-        margin-left: 160px;
-    }
-    .social-links .a4{
-        width: 40%;
-        position: absolute;
-        margin-left: 160px;
-        margin-top: 35px;
-    }
-    /*服飾圖片授權提供*/
-    .social-links .b1{
-        position: relative;
-        left: 180px;
-        top:80px;
-    }
+
+
+
+/* 授權文字獨立置底 */
+.social-links .b1 {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.b1 {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  /* 強制移除所有狀態的藍底線與變色 */
+  .b1:link,
+  .b1:visited,
+  .b1:hover,
+  .b1:active {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+
 
     /* 作品列表按鈕 */
+ 
+    .magazine-wrapper {
+        position: relative; /* 讓內部 absolute 定位參考這個容器 */
+        display: inline-block;
+        width: 100%;
+        max-width: 390px;
+    }
+    
+    /* 按鈕定位在圖片右下角 */
+    .more-btn {
+        position: absolute;
+        bottom: -470px;
+        right: 10px;
+        padding: 10px 20px;
+        width: 100px;
+        font-size: 14px;
+        font-weight: bold;
+        color: black;
+        text-decoration: none;
+        z-index: 999;
+        border-radius: 20px;
+    }
+    
+    
+    
+    
 /* .more-btn {
     display: block;
     margin-bottom: 230px;
@@ -1056,6 +1105,61 @@ iframe {
     #more-info{
         scroll-margin-top: 10px;
     }
+
+    /* 文字雲 */
+.glisper-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 400px 0;
+}
+  
+.glisper-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+}
+  
+.glisper-image {
+    width: 100%;
+    display: block;
+}
+  
+.floating-text-container {
+    position: absolute;
+    top: 55%; 
+    right: 0;
+    transform: translateY(-50%);
+    width: 50%;
+    height: 175px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+  
+  .scrolling-content {
+    display: flex;
+    flex-direction: column;
+    animation: scrollLoop 10s linear infinite; /* 持續滑動，時間可調 */
+  }
+  
+  .scrolling-line {
+    height: 20px;
+    line-height: 25px;
+    font-size: 12px;
+    text-align: center;
+    color: black;
+    white-space: nowrap;
+  }
+
+  .scrolling-line.active {
+    font-size:14px;
+    color: #000000;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  
 }
 
 

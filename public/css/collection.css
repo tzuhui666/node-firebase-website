@@ -453,61 +453,58 @@ body.slide-right {
         opacity: 0.6;
     }
 
-    /* 分類欄左右滑動 */
-    .category-bar {
-        display: flex;
-        overflow-x: auto; /* 開啟橫向卷軸 */
-        overflow-y: hidden; /* 避免高度變動 */
-        white-space: nowrap;
-        gap: 20px;
-        padding: 10px 10px;
-        width: 100%;
-        font-size: 14px;
-        scroll-behavior: smooth; /* 滑動順暢 */
-        -webkit-overflow-scrolling: touch; /* iOS裝置滑動優化 */
-    }
-
-    /* 隱藏滾動條 (可選) */
-    .category-bar::-webkit-scrollbar {
-        display: none;
-    }
-
-    /* 每個分類按鈕 */
-    .category {
-        flex-shrink: 0;
-        padding: 6px 12px;
-        background: none;
-        border-radius: 20px;
-        color: #333;
-        cursor: pointer;
-        user-select: none;
-        transition: all 0.3s ease;
-    }
-
-    /* 被選中的分類 */
-    .category.active {
-        color: black;
-        font-weight: bold;
-        border-bottom: 2px solid black;
-    }
+    
 
 
-    /* 圖片置中 */
+
     .gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding-bottom: 40px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 兩欄 */
+        gap: 16px;
+        padding: 20px;
+        justify-items: center;
     }
 
     .gallery-item img {
-        width: 80%;
-        max-width: 300px;
+        width: 100%;
+        max-width: 160px; /* 或調整為你喜歡的大小 */
         height: auto;
         border-radius: 10px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
+/* ✅ 分類條橫向滾動 */
+.category-bar {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    gap: 10px;
+    padding: 10px;
+    font-size: 14px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.category {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.category.active {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+/* 可選：隱藏橫向捲軸 */
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
 
     /* 詳細資訊視窗 */
     .detail-content {
