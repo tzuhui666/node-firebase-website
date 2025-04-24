@@ -291,30 +291,17 @@ body.slide-right {
         margin-top: 200px;
     }
 
-    /* 搜尋欄 */
-    .search-bar {
-        max-width: 1300px;
-        padding: 8px 18px;
-    }
-
-    .search-bar input {
-        font-size: 22px;
-    }
-
-    .search-icon img {
-        width: 50px;
-        height: 50px;
-    }
+    
 
     /* 分類表 */
     .category-bar {
         gap: 35px;
-        font-size: 28px;
+        font-size: 32px;
     }
 
     /* 星星符號 */
     .star {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .detail-right {
@@ -327,6 +314,7 @@ body.slide-right {
         flex: 1;
         line-height: 1.0;
       }
+    
     
 }
 
@@ -388,155 +376,123 @@ body.slide-right {
 }
 
 
-@media (max-width: 393px) {
-    body, html {
-        overflow-x: hidden;
-        background-color: #F3F3F3;
-    }
+@media (max-width: 768px) {
 
-    header {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px 0;
-    }
+  body, html {
+    overflow-x: hidden;
+    height: auto;
+  }
 
-    .logo {
-        height: 30px;
-        margin-top: 30px;
-        margin-bottom: 10px;
-    }
-
-    .nav-menu ul {
-        gap: 20px;
-    }
-
-    .nav-menu a {
-        font-size: 14px;
-        padding: 10px;
-    }
-
-     /* 搜尋欄縮小置中 */
-    .search-container {
-        margin-top: 140px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .search-bar {
-        width: 85%;
-        max-width: 320px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        background: white;
-        border-radius: 50px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        padding: 6px 14px;
-        margin-bottom: 10px;
-    }
-
-    .search-bar input {
-        font-size: 14px;
-        padding-left: 10px;
-        flex: 1;
-        border: none;
-        outline: none;
-        background: transparent;
-        color: #333;
-    }
-
-    .search-icon img {
-        width: 24px;
-        height: 24px;
-        opacity: 0.6;
-    }
-
-    
-
-
-
-    .gallery {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 兩欄 */
-        gap: 16px;
-        padding: 20px;
-        justify-items: center;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        max-width: 160px; /* 或調整為你喜歡的大小 */
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-/* ✅ 分類條橫向滾動 */
-.category-bar {
+  /* 導覽列區塊 */
+  header {
+    position: fixed;
     display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    gap: 10px;
-    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    background: white;
+    z-index: 1000;
+    width: 100%;
+  }
+
+  .logo {
+    height: 28px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .nav-menu ul {
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-menu a {
     font-size: 14px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
-
-.category {
-    flex-shrink: 0;
-    padding: 6px 14px;
-    border-radius: 20px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    cursor: pointer;
-    user-select: none;
-}
-
-.category.active {
-    font-weight: bold;
-    border-bottom: 2px solid black;
-}
-
-/* 可選：隱藏橫向捲軸 */
-.category-bar::-webkit-scrollbar {
-    display: none;
-}
-
-    /* 詳細資訊視窗 */
+    padding: 10px;
+  }
+  
+    
+    /* 分類橫向滑動條 */
+    .category-bar {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      gap: 10px;
+      padding: 10px;
+      font-size: 14px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .category {
+      flex-shrink: 0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      cursor: pointer;
+      user-select: none;
+    }
+  
+    .category.active {
+      font-weight: bold;
+      border-bottom: 2px solid black;
+    }
+  
+    /* 隱藏分類欄捲軸 */
+    .category-bar::-webkit-scrollbar {
+      display: none;
+    }
+  
+    /* 圖片牆縮排 */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 兩欄 */
+      gap: 16px;
+      padding: 20px;
+      justify-items: center;
+    }
+  
+    .gallery-item img {
+      width: 100%;
+      max-width: 160px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* 詳細頁資訊區塊 */
     .detail-content {
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
     }
-
+  
     .detail-left img {
-        max-height: 40vh;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
+      max-height: 40vh;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
-
-
+  
     .detail-right {
-        font-size: 16px;
-        gap: 10px;
+      font-size: 16px;
+      gap: 10px;
     }
-
+  
     .close-detail {
-        top: 10px;
-        right: 10px;
-        font-size: 40px;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
     }
-
+  
     audio {
-        width: 100%;
+      width: 100%;
     }
-}
-
-
+  
+  }
+  
 
 

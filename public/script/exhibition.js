@@ -73,35 +73,40 @@ const db = getFirestore(app);
 const container = document.getElementById("scrolling-content");
 
 async function loadLoopingText() {
-const snapshot = await getDocs(collection(db, "glisper-data"));
-const ansList = [];
+  const snapshot = await getDocs(collection(db, "glisper-data"));
+  const ansList = [];
 
-snapshot.forEach((doc) => {
+  snapshot.forEach((doc) => {
     const data = doc.data();
     if (data.ans_1) {
-    ansList.push(data.ans_1);
+      ansList.push(data.ans_1);
     }
-});
-
-ansList.forEach((text, index) => {
-    const div = document.createElement("div");
-    div.className = "scrolling-line";
-    div.textContent = text;
-    div.dataset.textId = text; // 或用 index，例如 `${index}`
-    container.appendChild(div);
   });
-  
+
   ansList.forEach((text, index) => {
     const div = document.createElement("div");
     div.className = "scrolling-line";
     div.textContent = text;
-    div.dataset.textId = text; // 或 `${index}-copy`
+    div.dataset.textId = text;
     container.appendChild(div);
   });
-  
+
+  ansList.forEach((text, index) => {
+    const div = document.createElement("div");
+    div.className = "scrolling-line";
+    div.textContent = text;
+    div.dataset.textId = text;
+    container.appendChild(div);
+  });
+
+  return; // ⬅️ 讓後面可以接 `.then()`
 }
 
-loadLoopingText();
+
+loadLoopingText().then(() => {
+  adjustScrollSpeed("scrolling-content");
+});
+
 
 
 
@@ -161,4 +166,36 @@ function highlightMiddleLine() {
 setInterval(highlightMiddleLine, 100);
 
 
+
+
+function adjustScrollSpeed(containerId) {
+  const container = document.getElementById(containerId);
+  const lines = container.querySelectorAll(".scrolling-line");
+
+  const lineHeight = parseFloat(getComputedStyle(lines[0]).height); // 例如 40px
+  const totalLines = lines.length;
+  const totalHeight = (totalLines * lineHeight) / 2; // 因為你重複兩次資料
+
+  // 建議速度：每 100px 滾動需 1.5 秒，可自由微調
+  const duration = Math.max((totalHeight / 100) * 1, 8).toFixed(1); // 最小 8 秒
+
+  // 建立 keyframes 動畫
+  const styleId = `scroll-style-${containerId}`;
+  let styleTag = document.getElementById(styleId);
+  if (styleTag) styleTag.remove(); // 移除舊的
+  styleTag = document.createElement("style");
+  styleTag.id = styleId;
+
+  const keyframesName = `scrollLoop-${containerId}`;
+  styleTag.innerHTML = `
+    @keyframes ${keyframesName} {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-${totalHeight}px); }
+    }
+    #${containerId} {
+      animation: ${keyframesName} ${duration}s linear infinite;
+    }
+  `;
+  document.head.appendChild(styleTag);
+}
 

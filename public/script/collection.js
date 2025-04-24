@@ -208,16 +208,16 @@ function showDetailPopup(data, number) {
   document.getElementById('detail-img').src = photoUrl;
   
   const colorMap = {
-    "BlackWhiteGray": "黑白灰",
-    "Warm Colors": "暖色系",
-    "Cool Colors": "冷色系",
-    "Light Warm": "淺暖",
+    "BlackWhiteGray": "霧黑",
+    "Warm Colors": "暖陽",
+    "Cool Colors": "冷霧",
+    "Light Warm": "晨橘",
     "Light Cool": "淺冷",
-    "Dark Warm": "深暖",
+    "Dark Warm": "焦糖",
     "Dark Cool": "深冷",
-    "PurplePink": "粉紫色系",
-    "Denim Blue": "牛仔色系",
-    "Neon Bright": "螢光亮色系"
+    "PurplePink": "微光",
+    "Denim Blue": "丹藍",
+    "Neon Bright": "霓光"
   };
   const musicMap = {
     "Classical Music": "古典音樂",

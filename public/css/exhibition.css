@@ -279,7 +279,7 @@ body.slide-right {
   .scrolling-content {
     display: flex;
     flex-direction: column;
-    animation: scrollLoop 10s linear infinite; /* 持續滑動，時間可調 */
+    /*animation: scrollLoop 10s linear infinite;  持續滑動，時間可調 */
   }
   
   .scrolling-line {
@@ -653,514 +653,266 @@ iframe {
 }
 
 
-@media (max-width: 750px)/*IPhone 12-pro*/ {
-    /* 基本設定 */
+@media (max-width: 768px) {
+
     body, html {
-        /* height: auto; 避免 100vh 造成內容超出 */
-        overflow-x: hidden; /*來避免水平滾動條*/
+      overflow-x: hidden;
+      height: auto;
     }
-
-    /* LOGO & 導覽列 */
+  
+    /* 導覽列區塊 */
     header {
-        position: fixed;
-        display: flex;
-        top: -20;
-        left: 0px;
-        background: white;
-        z-index: 1000;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+      background: white;
+      z-index: 1000;
+      width: 100%;
     }
-    
+  
     .logo {
-        height: 16px;
-        /* margin-left: -20px; */
-        margin-bottom: 15px;
-        margin-top: 50px;
+      height: 28px;
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
-    
+  
     .nav-menu ul {
-        gap: 30px;
+      gap: 24px;
+      padding: 0;
+      margin: 0;
     }
-    
+  
     .nav-menu a {
-        font-size: 14px;
-        padding: 15px;
+      font-size: 14px;
+      padding: 10px;
     }
-
+  
     /* 主視覺區塊 */
     .hero {
-        /* width: 1480px; */
-        width: 450%;
-        height: 50%;
-        margin-left: -895px;/*調整 margin 避免被 header 壓住*/
-        margin-top: 100px; 
-        clip-path: inset(0% 0% 19.9% 0%);
-
+      width: 100%;
+      height: 100vh;
+      margin-top: 80px;
+      overflow: hidden;
+      position: relative;
     }
-
-    .hero img{
-        margin-top: 35px;
-        height: 96.5%;
+  
+    .hero img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      margin-top: 0;
     }
-
-    /* 透明灰色區塊 */
-    .bottom-gray{
-        bottom: 183px;
-        height: 120px;
+  
+    .overlay-text {
+      position: absolute;
+      bottom: 55%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 360px;
+      text-align: center;
     }
-
-    /* 標題圖片 */
-    .overlay-text{
-        /* width: -1080px; */
-        /* left: -800px; */
-        width: 20%;
-        margin-left: 212px;
-        margin-bottom: 175px;
-    }
-
+  
     .overlay-text img {
-        max-width: 400px; /* 縮小標題大小 */
+      width: 100%;
+      height: auto;
     }
-
-    /* Read More 按鈕 */
+  
     .scroll-down {
-        bottom: -2%;
-    }
-
-    .scroll-down img {
-        max-width: 100px;
-        margin-left: 425px;
-        margin-bottom: 230px;
-    }
-    .container{
-        margin-top:-190px;
-    }
-
-    #backToTop {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-    }
-
-    /* 展覽內容 */
-    .exhibition-text {
-        visibility: hidden;
-        position: relative;
-    }
-
-    .exhibition-text::after {
-        content: "";
         position: absolute;
-        top: 0px;
+        bottom: 20px; /* 改為固定值，避免圖片超出底部 */
         left: 50%;
         transform: translateX(-50%);
-        width: 262px;    /* 圖片寬度 */
-        height: 133px;   /* 圖片高度 */
-        background-image: url('../img/exhibition_text.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
         z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    .exhibition-text img {
-        max-width: 390px; /* 縮小圖片 */
-    }
-
-    /* Show 區塊 */
-    .show-section-title.show img {
-        /* max-width: 1000px; 限制標題大小 */
-        visibility: hidden;
-        position: relative;
-    }
-    .show-section-title.show:after{
-        content: "";
-        position: absolute;
-        top: -60px;
-        left: 0%;
-        transform: translateX(0%);
-        width: 380px;    /* 圖片寬度 */
-        height: 89px;   /* 圖片高度 */
-        background-image: url('../img/show.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    .show-section img {
-        /* max-width: 1000px; 縮小內容圖片 */
-        visibility: hidden;
-        position: relative;
-    }
-    .show-section::after{
-        content: "";
-        position: absolute;
-        top: 1210px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 353px;    /* 圖片寬度 */
-        height: 352px;   /* 圖片高度 */
-        background-image: url('../img/show_content.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    /* Music 區塊 */
-    .music-section-title.show img {
-        /* max-width: 1100px;
-        margin-left: 200px; 減少偏移 */
-        visibility: hidden;
-        position: relative;
-    }
-    .music-section-title.show::after{
-        content: "";
-        position: absolute;
-        top: -125px;
-        left: 5%;
-        transform: translateX(50%);
-        width: 370px;    /* 圖片寬度 */
-        height: 89px;   /* 圖片高度 */
-        background-image: url('../img/music.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    .music-section img {
-        /* max-width: 1000px; 縮小內容 */
-        visibility: hidden;
-        position: relative;
-    }
-    .music-section::after{
-        content: "";
-        position: absolute;
-        top: 1750px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 352px;    /* 圖片寬度 */
-        height: 438px;   /* 圖片高度 */
-        background-image: url('../img/music_content.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    /* Magazine 區塊 */
-    .magazine-section-title.show img {
-        /* max-width: 1000px; 縮小標題 */
-        visibility: hidden;
-        position: relative;
-    }
-    .magazine-section-title.show::after{
-        content: "";
-        position: absolute;
-        top: 75px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 383px;    /* 圖片寬度 */
-        height: 107px;   /* 圖片高度 */
-        background-image: url('../img/magazine.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 999;
-        visibility: visible; /* 顯示圖片 */
-    }
-
-    .magazine-section img {
-        /* max-width: 1000px; 縮小內容 */
-        visibility: hidden;
-        position: relative;
-    }
-    .magazine-section::after{
-        content: "";
-        position: absolute;
-        top: 2415px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 352px;    /* 圖片寬度 */
-        height: 720px;   /* 圖片高度 */
-        background-image: url('../img/magazine_content.png');
-        background-size: cover;
-        background-position: center;
-        display: block;
-        z-index: 899;
-        visibility: visible; /* 顯示圖片 */
-    }
-    /* 文字雲 */
-    .everyone{
-        text-align: center;
-        margin-top: 450px;
-    }
-    .everyone img{
-        width: 100%;
-        max-width: 325px;
-        margin-top: 30px;
-    }
-
-    .everyone_1{
-        text-align: center;
-    }
-    .everyone_1 img{
-        width: 100%;
-        max-width: 300px;
-        margin-top: 30px;
-        /* margin-bottom: 100px; */
-    }
-    .information{
-        /* position: absolute; */
-        /* width: 390px;    圖片寬度 */
-        margin-top: -30px;
-        clip-path: inset(2% 0% 0% 0%);
-    }
-    /* 展覽標題 */
-    .ex-info {
-        text-align: center;
-        max-width: 1200px;
-        width: 100%;
-    }
-
-    .ex-info h2 {
-        font-size: 21px;
-        font-weight: bold;
-        color: #ffffff;
-        margin-top: -25px;
-        margin-bottom: 35px;
-    }
-
-    /* 展覽資訊 */
-    .ex-details {
-        display: flex;
-        flex-direction: column;
-        gap: 60px;
-        align-items: center;
-    }
-    
-    .ex-detail-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        border-radius: 12px;
-        width: 90%;
-    }
-    
-    .ex-item {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .ex-item h3 {
-        font-size: 20px;
-        font-weight: bold;
-        color: #ffffff;
-        margin-bottom: 10px;
-    }
-    
-    .ex-item p {
-        font-size: 16px;
-        color: #ffffff;
-        margin: 5px 0;
-    }
-    
-    .ex-map iframe {
-        width: 100%;
-        max-width: 320px;
-        height: 220px;
-        border-radius: 8px;
-        border: none;
-    }
-  
-    
-    /* 日期圖片樣式 */
-    .date-img {
-        width: 240px; /* 調整大小 */
-        height: auto;
-        margin: 10px 0;
-    }
-
-
-
-    iframe {
-        width: 350px;
-        height: 233px;
-        /* border-radius: 8px; */
-        border: none;
-        /* z-index: 999; */
-    }
-
-/* 社交媒體連結 - 手機版排版優化 */
-.social-links {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0 30px;
-    gap: 12px;
-    margin-top: 40px;
-}
-
-.social-left,
-.social-right {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 12px;
-    color: white;
-    font-weight: bold;
-}
-
-.social-right a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: white;
-    text-decoration: none;
-}
-
-.social-right img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-}
-
-
-
-
-
-/* 授權文字獨立置底 */
-.social-links .b1 {
-    margin-top: 30px;
-    text-align: center;
-    font-size: 12px;
-}
-
-.b1 {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: normal;
-  }
-  
-  /* 強制移除所有狀態的藍底線與變色 */
-  .b1:link,
-  .b1:visited,
-  .b1:hover,
-  .b1:active {
-    color: #ffffff;
-    text-decoration: none;
-  }
-  
-
-
-    /* 作品列表按鈕 */
- 
-    .magazine-wrapper {
-        position: relative; /* 讓內部 absolute 定位參考這個容器 */
-        display: inline-block;
-        width: 100%;
-        max-width: 390px;
-    }
-    
-    /* 按鈕定位在圖片右下角 */
-    .more-btn {
-        position: absolute;
-        bottom: -470px;
-        right: 10px;
-        padding: 10px 20px;
         width: 100px;
-        font-size: 14px;
-        font-weight: bold;
-        color: black;
-        text-decoration: none;
-        z-index: 999;
-        border-radius: 20px;
+        height: auto;
+        text-align: center;
+      }
+      
+      .scroll-down img {
+        width: 100%;
+        max-width: 80px; /* 根據圖片原始尺寸調整 */
+        height: auto;
+      }
+      
+  
+      .bottom-gray {
+        width: 100%;
+        height: 80px;
+        background-color: rgba(179, 179, 179, 0.3);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 800;
+      }
+  
+    .container {
+      margin-top: -80px;
     }
-    
-    
-    
-    
-/* .more-btn {
-    display: block;
-    margin-bottom: 230px;
-    margin-left: -200px;
-    font-size: 40px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    z-index: 999; /* 讓它顯示在最上層 
-    visibility: hidden;
-} */
-
-    #more-info{
-        scroll-margin-top: 10px;
+  
+    #backToTop {
+      bottom: 10px;
+      right: 10px;
+      width: 60px;
+      height: 60px;
     }
-
-    /* 文字雲 */
-.glisper-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 400px 0;
-}
   
-.glisper-container {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-}
+    /* 展覽簡介圖 */
+    .exhibition-text {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
   
-.glisper-image {
-    width: 100%;
-    display: block;
-}
+    .exhibition-text img {
+      max-width: 320px;
+      width: 90%;
+    }
   
-.floating-text-container {
-    position: absolute;
-    top: 55%; 
-    right: 0;
-    transform: translateY(-50%);
-    width: 50%;
-    height: 175px;
-    overflow: hidden;
-    pointer-events: none;
-}
-
+    /* 各區標題與內容 */
+    .show-section-title,
+    .music-section-title,
+    .magazine-section-title {
+      text-align: center;
+      margin: 40px auto;
+    }
   
-  .scrolling-content {
-    display: flex;
-    flex-direction: column;
-    animation: scrollLoop 10s linear infinite; /* 持續滑動，時間可調 */
+    .show-section-title img,
+    .music-section-title img,
+    .magazine-section-title img {
+      max-width: 350px;
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    .show-section img,
+    .music-section img,
+    .magazine-section img {
+      max-width: 350px;
+      width: 90%;
+      margin: 20px auto;
+    }
+  
+    .show-section,
+    .music-section,
+    .magazine-section {
+      margin: 30px 0;
+    }
+  
+    /* 按鈕 */
+    .more-btn {
+      display: block;
+      margin: 20px auto 60px auto;
+      font-size: 16px;
+      text-align: center;
+      width: fit-content;
+      padding: 6px 10px;
+    }
+  
+    /* 展覽資訊（下半部） */
+    .information {
+      margin-top: 40px;
+      padding: 40px 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  
+    .ex-info h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+  
+    .ex-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+  
+    .ex-item {
+      text-align: center;
+    }
+  
+    .ex-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+  
+    .ex-item p {
+      font-size: 14px;
+      color: #fff;
+    }
+  
+    .date-img {
+      width: 200px;
+      margin: 10px 0;
+    }
+  
+    .ex-maps iframe,
+    iframe {
+      width: 90%;
+      max-width: 320px;
+      height: 200px;
+      border-radius: 10px;
+    }
+  
+    /* 社群連結 */
+    .social-links {
+      margin-top: 30px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .social-right a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  
+    .social-right img {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .b1 {
+      font-size: 12px;
+      margin-top: 20px;
+      color: #fff;
+    }
+  
+    /* 文字雲滾動 */
+    .glisper-section {
+      padding: 120px 0;
+    }
+  
+    .floating-text-container {
+      width: 100%;
+      max-width: 100%;
+      top: 55%;
+      height: 160px;
+      right: -25%;
+    }
+  
+    .scrolling-line {
+      font-size: 12px;
+      height: 24px;
+      line-height: 24px;
+    }
+  
+    .scrolling-line.active {
+      font-size: 14px;
+    }
+  
   }
-  
-  .scrolling-line {
-    height: 20px;
-    line-height: 25px;
-    font-size: 12px;
-    text-align: center;
-    color: black;
-    white-space: nowrap;
-  }
-
-  .scrolling-line.active {
-    font-size:14px;
-    color: #000000;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-
-  
-}
+   
 
 
 

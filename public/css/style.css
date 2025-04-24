@@ -129,3 +129,62 @@ button {
         max-width: 150px;
     }
 }
+
+
+@media (max-width: 768px) { 
+    .container {
+        display: none;
+    }
+
+    .mobile-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        position: relative;
+        background-color: black;
+        z-index: 10;
+    }
+
+    .mobile-bg {
+        position: absolute;
+        width: 100%;
+        max-height: 990px;      
+        height: 100vh;
+        object-fit: cover;
+        left: 50%;
+        transform: translateX(-50%); 
+        z-index: -1;
+    }
+
+    .mobile-enter-btn {
+        background: none;
+        border: none;
+        margin-bottom: 10vh;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .enter-btn-img {
+        width: 220px;
+        max-width: 80%;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .enter-btn-img:hover {
+        transform: scale(1.05);
+    }
+
+    /* 淡出動畫 */
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+
+    .fade-out {
+        animation: fadeOut 0.5s forwards;
+    }
+}
