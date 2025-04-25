@@ -697,7 +697,7 @@ p {
     
       .scroll-down {
           position: absolute;
-          bottom: 20px; /* 改為固定值，避免圖片超出底部 */
+          bottom: 5px; /* 改為固定值，避免圖片超出底部 */
           left: 50%;
           transform: translateX(-50%);
           z-index: 999;
@@ -707,10 +707,12 @@ p {
         }
         
         .scroll-down img {
-          width: 100%;
-          max-width: 80px; /* 根據圖片原始尺寸調整 */
-          height: auto;
-        }
+            width: auto;        
+            height: 70px;      
+            display: block;
+            margin: 0 auto;   
+          }
+          
         
     
         .bottom-gray {
@@ -764,103 +766,71 @@ p {
         right: 10px;
     }
     
-    /* 三個拱門區塊 */
     .three {
-        margin-top: 250px;
+        display: flex;
         flex-direction: column;
-        gap: 0;
         align-items: center;
+        gap: 130px;
+        margin-top: -40px;
+        padding-bottom: 40px;
         position: relative;
     }
-
+    
+    /* 左邊（第1個、第3個）靠左顯示 */
+    .three .arch:nth-child(odd) {
+        align-self: flex-start;
+        margin-left: 30px;
+    }
+    
+    /* 右邊（第2個）靠右顯示 */
+    .three .arch:nth-child(even) {
+        align-self: flex-end;
+        margin-right: 30px;
+    }
+    
+    
     .arch {
-        width: 143px;
-        height: 164.88px; /* 高度加高讓文字與圖片能堆疊 */
-        margin-bottom: 30px;
-        border-radius: 0;
-        border-top-left-radius: 180px;
-        border-top-right-radius: 180px;
+        width: 160px;
+        height: 180px;
+        border-top-left-radius: 160px;
+        border-top-right-radius: 160px;
+        background-color: transparent;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;      /* 水平置中 */
+        align-items: center;          /* 垂直置中整體 .arch-inner */
+        text-align: center;
+        padding: 12px 6px;
         position: relative;
     }
-   
-    /*聚光燈效應*/
-    #arch1{
-        position: absolute;
-        left: 40px;
-        scroll-margin-top: 210px;/*按Back to top回到三效應*/
-    }
-    .arch-content1{
-        position: absolute;
-        left: 0px;
-        top: 30px;
     
+    .arch-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
-    .arch-content1 h2{
-        font-size: 10px;
-        margin-bottom: 8%;
+    
+    /* 通用文字與圖片尺寸 */
+    .arch h2 {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 6px;
+        line-height: 1.6;
     }
-    .arch-content1 .text-image_a {
+    
+    .arch img {
         width: 60px;
-    }
-    .arch-content1 .Arrow-Down_a{
-        width: 20px;
-        position: relative;
-        margin-top: 5%;
-    }
-    /*透明錯覺*/
-    #arch2{
-        position: absolute;
-        left: 213px;
-        top: 50px
-    }
-    .arch-content2{
-        position: absolute;
-        left: -10px;
-        top: 30px;
-    }
-    .arch-content2 h2{
-        font-size: 16px;
-        margin-bottom: 8%;
-    }
-    .arch-content2 .text-image_b {
-        width: 95px;
-    }
-    .arch-content2 .Arrow-Down_b{
-        width: 35px;
-        margin-top: 10%;
-    }
-    /*錯誤認知*/
-    #arch3{
-        position: absolute;
-        left: 40px;
-        top: 155px;
-    }
-    .arch-content3{
-        position: absolute;
-        left: 0px;
-        top: 30px;
-    }
-    .arch-content3 h2{
-        font-size: 16px;
-        margin-bottom: 8%;
-    }
-    .arch-content3 .text-image_c {
-        width: 95px;
-    }
-    .arch-content3 .Arrow-Down_c{
-        width: 35px;
-        margin-top: 10%;
+        height: auto;
+        margin-bottom: 4px;
     }
     
-    /* 去除 hover 動畫，手機不需要 */
-    .arch:hover {
-        background-color: unset;
-        transform: unset;
+    .arch a img {
+        width: 20px;
+        height: auto;
+        margin-top: 4px;
     }
-
-    .arch:hover img {
-        transform: unset;
-    }
+    
     
     
     #a {

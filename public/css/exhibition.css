@@ -722,7 +722,7 @@ iframe {
   
     .scroll-down {
         position: absolute;
-        bottom: 20px; /* 改為固定值，避免圖片超出底部 */
+        bottom: 5px; /* 改為固定值，避免圖片超出底部 */
         left: 50%;
         transform: translateX(-50%);
         z-index: 999;
@@ -732,10 +732,11 @@ iframe {
       }
       
       .scroll-down img {
-        width: 100%;
-        max-width: 80px; /* 根據圖片原始尺寸調整 */
-        height: auto;
-      }
+          width: auto;        
+          height: 70px;      
+          display: block;
+          margin: 0 auto;   
+        }
       
   
       .bottom-gray {
@@ -752,12 +753,7 @@ iframe {
       margin-top: -80px;
     }
   
-    #backToTop {
-      bottom: 10px;
-      right: 10px;
-      width: 60px;
-      height: 60px;
-    }
+   
   
     /* 展覽簡介圖 */
     .exhibition-text {
@@ -910,7 +906,12 @@ iframe {
     .scrolling-line.active {
       font-size: 14px;
     }
-  
+    #backToTop {
+        position: fixed;
+        bottom: 20px;
+        right: 140px;
+    }
+
   }
    
 
