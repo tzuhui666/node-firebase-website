@@ -146,36 +146,43 @@ function clearURLParams() {
 async function loadGalleryFromFirestore() {
   const galleryContainer = document.querySelector('.gallery');
   const querySnapshot = await getDocs(collection(db, "glisper-data"));
-  const dataList = querySnapshot.docs.map(doc => doc.data());
+  let dataList = querySnapshot.docs.map(doc => doc.data());
 
-  dataList.forEach((data, index) => {
+  // 先篩掉不顯示的
+  dataList = dataList.filter(data => {
     const privacy = (data.privacy_choice || "").toLowerCase();
-    if (privacy === "disagree") return; // ✅ 只有 agree 或空值才顯示
-  
+    return privacy !== "disagree";
+  });
+
+  // 再按 number 大到小排列
+  dataList.sort((a, b) => (b.number || 0) - (a.number || 0));
+
+  // 再依照排序後的資料建立 gallery-item
+  dataList.forEach((data, index) => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     galleryItem.setAttribute("data-color", data.color || "");
     galleryItem.setAttribute("data-number", data.number || index + 1);
-  
+
     const photoUrl = Array.isArray(data.pose_photos)
       ? data.pose_photos[0]
       : data.pose_photos || "./images/default.png";
-  
+
     const img = document.createElement('img');
     img.src = photoUrl;
     img.alt = "GLISPER pose photo";
     img.style.cursor = 'pointer';
-  
+
     img.addEventListener('click', () => {
       showDetailPopup(data, data.number || index + 1);
       window.history.pushState({}, '', `?number=${data.number || index + 1}`);
     });
-  
+
     galleryItem.appendChild(img);
     galleryContainer.appendChild(galleryItem);
   });
 
-  
+  // 下面這段（綁關閉詳細視窗的事件）不變
   const closeBtn = document.getElementById('closeDetail');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
@@ -198,6 +205,7 @@ async function loadGalleryFromFirestore() {
     }
   });
 }
+
 
 // ✅ 顯示詳細視窗
 function showDetailPopup(data, number) {
